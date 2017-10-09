@@ -1,0 +1,25 @@
+                            | # Demonstrate branch cancellation
+                            | # /* $begin prog7-ys */
+                            | # prog7
+0x2000:                      | .pos 0x2000
+0x2000:                      | top:
+0x2000:30f217c3172027010000  |    irmovq  $0x01272017c317,%rdx 
+0x200a:202e                  |    rrmovq %rdx, %r14
+0x200c:6102                  |    subq  %rax,%rdx
+0x200e:10                    |    nop
+0x200f:10                    |    nop 
+0x4000:                      | .pos 0x4000
+0x4000:4024eeffc023d1fecade  |    rmmovq  %rdx,$0xdecafed123c0ffee(%rsp)
+0x400a:740020000000000000    |    jne  top
+0x4013:90                    |    ret
+0x4014:00                    |    halt
+                             | 
+0x4015:                      | data:
+0x4015:fccade0000000000      | .quad 0xDECAFCOFFEE
+0x5013:                      | .pos 0x5013
+0x5013:                      | target:
+0x5013:30f20200000000000000  |    irmovq $2, %rdx    # Target
+0x501d:30f30300000000000000  |    irmovq $3, %rbx    # Target+1
+                             | # /* $end prog7-ys */
+0x5027:00                    |    halt
+                             | 

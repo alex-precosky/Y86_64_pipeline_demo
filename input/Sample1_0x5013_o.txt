@@ -1,0 +1,48 @@
+Opened quiz1.mem, starting offset 0x0000000000005013
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ 
+   W       0    00000000 :     1     0   -  -   -   -   F   F                                      NOP
+   M       0    00000000 :     1     0   -  -   -   -   F   F                                      NOP
+   E       0    00000000 :     1     0   -  -   F   F   F   F                                      NOP
+   D       0    00000000 :     1     0   F  F   F   F   F   F  8181818181818181 8181818181818181   NOP
+   F       0    00005013 :     3     0   F  2   -   -   -   -  0000000000000002 000000000000501D   irmovq
+ 
+   W       1    00000000 :     1     0   -  -   -   -   F   F                                      NOP
+   M       1    00000000 :     1     0   -  -   -   -   F   F                                      NOP
+   E       1    00000000 :     1     0   -  -   F   F   F   F                                      NOP
+   D       1    00005013 :     3     0   F  2   F   F   2   F  0000000000000002 000000000000501D   irmovq
+   F       1    0000501D :     3     0   F  3   -   -   -   -  0000000000000003 0000000000005027   irmovq
+ 
+   W       2    00000000 :     1     0   -  -   -   -   F   F                                      NOP
+   M       2    00000000 :     1     0   -  -   -   -   F   F                                      NOP
+   E       2    00005013 :     3     0   -  -   F   F   2   F                                      irmovq
+   D       2    0000501D :     3     0   F  3   F   F   3   F  0000000000000003 0000000000005027   irmovq
+   F       2    00005027 :     0     0   F  F   -   -   -   -  0000000000000000 0000000000005028   halt
+ 
+   W       3    00000000 :     1     0   -  -   -   -   F   F                                      NOP
+   M       3    00005013 :     3     0   -  -   -   -   2   F                                      irmovq
+   E       3    0000501D :     3     0   -  -   F   F   3   F                                      irmovq
+   D       3    00005027 :     0     0   F  F   F   F   F   F  0000000000000000 0000000000005028   halt
+   F       3    00005028 :     0     0   F  F   -   -   -   -  0000000000000000 0000000000005029   halt
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ 
+   W       4    00005013 :     3     0   -  -   -   -   2   F                                      irmovq
+   M       4    0000501D :     3     0   -  -   -   -   3   F                                      irmovq
+   E       4    00005027 :     0     0   -  -   F   F   F   F                                      halt
+   D       4    00005028 :     0     0   F  F   F   F   F   F  0000000000000000 0000000000005029   halt
+   F       4    00005029 :    FD     0   F  F   -   -   -   -  0000000000000000 0000000000005029   ADDR EXCEP pc = 5029
+ 
+   W       5    0000501D :     3     0   -  -   -   -   3   F                                      irmovq
+   M       5    00005027 :     0     0   -  -   -   -   F   F                                      halt
+   E       5    00005028 :     0     0   -  -   F   F   F   F                                      halt
+   D       5    00005029 :    FD     0   F  F   F   F   F   F  0000000000000000 0000000000005029   ADDR EXCEP pc = 5029
+   F       5    00005029 :    FD     0   F  F   -   -   -   -  0000000000000000 0000000000005029   ADDR EXCEP pc = 5029
+ 
+   W       6    00005027 :     0     0   -  -   -   -   F   F                                      halt
+   M       6    00005028 :     0     0   -  -   -   -   F   F                                      halt
+   E       6    00005029 :    FD     0   -  -   F   F   F   F                                      ADDR EXCEP pc = 5029
+   D       6    00005029 :    FD     0   F  F   F   F   F   F  0000000000000000 0000000000005029   ADDR EXCEP pc = 5029
+   F       6    00005029 :    FD     0   F  F   -   -   -   -  0000000000000000 0000000000005029   ADDR EXCEP pc = 5029
+Normal termination
