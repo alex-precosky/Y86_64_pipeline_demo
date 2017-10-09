@@ -26,7 +26,10 @@ struct decodeStateStruct initializeDecodeStage()
   ds.valP = 0x8181818181818181;
   ds.rA = 0xF;
   ds.rB = 0xF;
-
+  ds.srcA = 0xF;
+  ds.srcB = 0xF;
+  ds.destE = 0xF;
+  ds.destM = 0xF;
   return ds;
 }
 
@@ -51,6 +54,9 @@ struct decodeStateStruct processDecodeStage(int tick) {
   else
     instr = exceptionStr;
 
+  if( ds.icode == IRMOV || ds.icode == RRMOV )
+    ds.destE = ds.rB;
+
 
   printReg("D", // char* stage
 	   tick, // int tick
@@ -58,8 +64,8 @@ struct decodeStateStruct processDecodeStage(int tick) {
 	   ds.icode, // icode
 	   ds.ifun, // ifun
 	   1, ds.rA, ds.rB, // regsValid, rA, rB
-	   0, UNNEEDED_REG, UNNEEDED_REG, // srcValid, srcA, srcB
-	   0, UNNEEDED_REG, UNNEEDED_REG, // dstValid, destE, destM
+	   1, ds.srcA, ds.srcB, // srcValid, srcA, srcB
+	   1, ds.destE, ds.destM, // dstValid, destE, destM
 	   1, ds.valC, // valCValid, valC
 	   1, ds.valP, // valPValid, valP
 	   instr); // char* instr
@@ -76,5 +82,6 @@ void updateDecodeStage(struct fetchStateStruct fs)
   ds.ifun = fs.ifun;
   ds.valC = fs.valC;
   ds.valP = fs.valP;
-
+  ds.rA = fs.rA;
+  ds.rB = fs.rB;
 }

@@ -24,7 +24,7 @@ struct writeBackStateStruct {
   uint64_t destM;
   nibble icode;
   nibble ifun;
-
+  uint64_t valP;
 } ;
 
 struct writeBackStateStruct initializeWriteBackStage();

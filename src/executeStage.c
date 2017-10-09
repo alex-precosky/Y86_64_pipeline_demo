@@ -73,5 +73,9 @@ void updateExecuteStage(struct decodeStateStruct ds)
   
   es.rA = ds.rA;
   es.rB = ds.rB;
-
+  es.srcA = ds.srcA;
+  es.srcB = ds.srcB;
+  es.destE = ds.destE;
+  es.destM = ds.destM;
+  es.valP = ds.valP;
 }

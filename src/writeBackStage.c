@@ -66,4 +66,5 @@ void updateWriteBackStage(struct memoryStateStruct ms)
   wbs.ifun = ms.ifun;
   wbs.destE = ms.destE;
   wbs.destM = ms.destM;
+  wbs.valP = ms.valP;
 }

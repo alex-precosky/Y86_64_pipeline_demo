@@ -25,6 +25,7 @@ struct memoryStateStruct {
   uint8_t destE;
   uint8_t destM;
   uint64_t valE;
+  uint64_t valP;
 };
 
 struct memoryStateStruct initializeMemoryStage(void);

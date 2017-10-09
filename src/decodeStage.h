@@ -29,7 +29,10 @@ struct decodeStateStruct {
   uint8_t valA;
   uint8_t valB;
   uint64_t valP;
-    
+  nibble srcA;
+  nibble srcB;
+  nibble destE;
+  nibble destM;
 };
 
 struct decodeStateStruct initializeDecodeStage();

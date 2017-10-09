@@ -70,4 +70,5 @@ void updateMemoryStage(struct executeStateStruct es)
   ms.valE = es.valE;
   ms.destE = es.destE;
   ms.destM = es.destM;
+  ms.valP = es.valP;
 }

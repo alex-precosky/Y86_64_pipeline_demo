@@ -67,6 +67,7 @@ struct fetchStateStruct processFetchStage(int tick) {
     {
       fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
       fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
+      fs.valC = 0x00;
       fs.valP = fs.PC + 2;
     }
   else if( fs.icode == IRMOV)
@@ -155,4 +156,9 @@ struct fetchStateStruct processFetchStage(int tick) {
 	   
 
   return fs;
+}
+
+void updateFetchStage(uint64_t valP)
+{
+  fs.PC = valP;
 }

@@ -31,6 +31,7 @@ struct executeStateStruct {
   uint8_t srcB;
   nibble rA;
   nibble rB;
+  uint64_t valP;
 };
 
 struct executeStateStruct initializeExecuteStage();

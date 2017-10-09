@@ -98,10 +98,12 @@ int main(int argc, char **argv) {
       // Here might be a good spot to add code or make function calls 
       // to check for hazards cause stage registers to be updated etc.
 
+      updateFetchStage(fs.valP);
       updateDecodeStage(fs);
       updateExecuteStage(ds);
       updateMemoryStage(es);
       updateWriteBackStage(ms);
+
 
       if (endTime != -1) {
 	if (clock >= endTime) {
