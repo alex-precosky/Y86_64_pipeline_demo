@@ -10,6 +10,7 @@
 #include "instructionSpecifications.h"
 #include "executeStage.h"
 #include "printInternalReg.h"
+#include <string.h>
 
 // Use this struct to store state information for this stage. By making it 
 // static the structure and its fields can be accessed in this file
@@ -56,9 +57,22 @@ struct decodeStateStruct processDecodeStage(int tick) {
 
   if( ds.icode == IRMOV || ds.icode == RRMOV )
     ds.destE = ds.rB;
+  else
+    ds.destE = 0xF;
+
+  char stage[4];
+
+ if(ds.bubble_ctr == 0)
+    strcpy(stage, "  D");
+  else if(ds.bubble_ctr==1)
+    strcpy(stage, "D W");
+  else if(ds.bubble_ctr==2)
+    strcpy(stage, "D M");
+  else if(ds.bubble_ctr==3)
+    strcpy(stage, "D E");
 
 
-  printReg("D", // char* stage
+  printReg(stage, // char* stage
 	   tick, // int tick
 	   ds.PC, // PC
 	   ds.icode, // icode
@@ -84,4 +98,10 @@ void updateDecodeStage(struct fetchStateStruct fs)
   ds.valP = fs.valP;
   ds.rA = fs.rA;
   ds.rB = fs.rB;
+}
+
+
+void setDecodeHazard(int bubble_ctr)
+{
+  ds.bubble_ctr = bubble_ctr;
 }

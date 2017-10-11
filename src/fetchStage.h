@@ -35,10 +35,13 @@ struct fetchStateStruct {
   uint64_t valC;
   uint64_t valP;
 
+  int bubble_ctr; // tracks bubble positions
+
 } ;
 
 struct fetchStateStruct processFetchStage(int tick);
 struct fetchStateStruct getFetchState();
 int initializeFetchState(int memoryFileFD, uint64_t initialPC);
 void updateFetchStage(uint64_t valP);
+void setFetchHazard(int bubble_ctr);
 #endif /* fetchStage_h */

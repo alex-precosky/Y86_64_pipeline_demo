@@ -11,6 +11,7 @@
 #include <sys/stat.h>
 #include <sys/mman.h>
 #include "decodeStage.h"
+#include <string.h>
 
 // Use this struct to store state information for this stage. By making it 
 // static the structure and its fields can be accessed in this file
@@ -40,6 +41,8 @@ int initializeFetchState(int memoryFileFD, uint64_t initialPC) {
     fs.icode = NOP;
     fs.ifun = 0;
 
+    fs.bubble_ctr = 0;
+
     return 0;
 }
 
@@ -58,10 +61,14 @@ struct fetchStateStruct processFetchStage(int tick) {
   if( fs.icode == HALT )
     {
       fs.valP = fs.PC + 1;
+      fs.rA = 0xF;
+      fs.rB = 0xF;
     }
   else if( fs.icode == NOP)
     {
       fs.valP = fs.PC + 1;
+      fs.rA = 0xF;
+      fs.rB = 0xF;
     }
   else if( fs.icode == RRMOV) //rrmovq, cmovXX
     {
@@ -72,7 +79,7 @@ struct fetchStateStruct processFetchStage(int tick) {
     }
   else if( fs.icode == IRMOV)
     {
-      fs.rA = 0xf;
+      fs.rA = UNNEEDED_REG;
       fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
       fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
       fs.valP = fs.PC + 10;
@@ -112,7 +119,7 @@ struct fetchStateStruct processFetchStage(int tick) {
   else if( fs.icode == PUSH)
     {
       fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
-      fs.rB = 0xF;
+      fs.rB = UNNEEDED_REG;
       fs.valP = fs.PC+2;
     }
   else if( fs.icode == POP)
@@ -124,15 +131,6 @@ struct fetchStateStruct processFetchStage(int tick) {
 
   
 
-  // This example is for a stall
-  //printReg("F W", 10, 0x100, 6,  2, 1, 10, 11,
-	//   1, 10, 11,
-	 //  0, UNNEEDED_REG, UNNEEDED_REG, 1, 0, 1, 12, "andq");
-  // Something that uses valC
-//  printReg("F", 12, 100, 7,  0, 1, 0xf , 0xF,
-//	   0, UNNEEDED_REG, UNNEEDED_REG, 
-//	   0, UNNEEDED_REG, UNNEEDED_REG, 1, 0x1234567811, 1, 109, 
- //          getInstructionMnemonic(7, 0));
 
   int isValidFunction = validFunctionCode(fs.icode, fs.ifun);
   char* instr;
@@ -142,7 +140,19 @@ struct fetchStateStruct processFetchStage(int tick) {
   else
     instr = exceptionStr;
 
-  printReg("F", // char* stage
+  char stage[4];
+
+
+  if(fs.bubble_ctr == 0)
+    strcpy(stage, "  F");
+  else if(fs.bubble_ctr==1)
+    strcpy(stage, "F W");
+  else if(fs.bubble_ctr==2)
+    strcpy(stage, "F M");
+  else if(fs.bubble_ctr==3)
+    strcpy(stage, "F E");
+
+  printReg(stage, // char* stage
 	   tick, // int tick
 	   fs.PC, // PC
 	   fs.icode, // icode
@@ -161,4 +171,9 @@ struct fetchStateStruct processFetchStage(int tick) {
 void updateFetchStage(uint64_t valP)
 {
   fs.PC = valP;
+}
+
+void setFetchHazard(int bubble_ctr)
+{
+  fs.bubble_ctr = bubble_ctr;
 }

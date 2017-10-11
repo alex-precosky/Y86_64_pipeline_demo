@@ -87,6 +87,8 @@ int main(int argc, char **argv) {
     struct fetchStateStruct fs = getFetchState();
 
     int OK = 1;
+    int bubble_position = -1; // 3=decode, 2=execute, 1=memory, 0=write back, -1=no bubble
+    
 
     for (int clock = 0; OK ; clock++) {
       wbs = processWriteBackStage(clock);
@@ -98,8 +100,58 @@ int main(int argc, char **argv) {
       // Here might be a good spot to add code or make function calls 
       // to check for hazards cause stage registers to be updated etc.
 
-      updateFetchStage(fs.valP);
-      updateDecodeStage(fs);
+      // checking for a hazard and there not being a bubble already
+      if(fs.rA == ds.destE && fs.rA != UNNEEDED_REG && bubble_position < 0)
+	{
+	  printf("Hazard\n");
+	  bubble_position = 3;
+
+	  updateFetchStage(fs.valP);
+	  updateDecodeStage(fs);
+
+	  setFetchHazard(bubble_position);
+	  setDecodeHazard(bubble_position);
+
+	  bubble_position--;
+	}
+
+      else if(bubble_position == 2) // previously detected bubble in progress
+	{
+	  setFetchHazard(bubble_position);
+	  setDecodeHazard(bubble_position);
+
+	  // next processExecute will be a NOP
+	  ds.icode = NOP;
+	  
+	  updateExecuteStage(ds);
+	  bubble_position--;
+
+	}
+      else if(bubble_position == 1) 
+	{
+	  ds.icode = NOP;
+	  setFetchHazard(1);
+	  setDecodeHazard(1);
+	  bubble_position--;
+	}
+      else if(bubble_position == 0)
+	{
+	  ds.icode = NOP;
+	  setFetchHazard(0);
+	  setDecodeHazard(0);
+	  bubble_position--;
+	}
+      else
+	{
+	  setFetchHazard(0);
+	  setDecodeHazard(0);
+	  updateFetchStage(fs.valP);
+	  updateDecodeStage(fs);
+	  updateExecuteStage(ds);
+	  bubble_position--;
+	}
+
+      // no matter what, update execute, memory and write back stages
       updateExecuteStage(ds);
       updateMemoryStage(es);
       updateWriteBackStage(ms);

@@ -49,7 +49,7 @@ struct executeStateStruct processExecuteStage(int tick) {
     instr = exceptionStr;
 
 
-  printReg("E", // char* stage
+  printReg("  E", // char* stage
 	   tick, // int tick
 	   es.PC, // PC
 	   es.icode, // icode

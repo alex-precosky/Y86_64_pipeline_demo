@@ -46,7 +46,7 @@ struct memoryStateStruct processMemoryStage(int tick) {
   else
     instr = exceptionStr;
 
-  printReg("M", // char* stage
+  printReg("  M", // char* stage
 	   tick, // int tick
 	   ms.PC, // PC
 	   ms.icode, // icode

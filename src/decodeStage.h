@@ -33,11 +33,14 @@ struct decodeStateStruct {
   nibble srcB;
   nibble destE;
   nibble destM;
+
+  int bubble_ctr;
 };
 
 struct decodeStateStruct initializeDecodeStage();
 struct decodeStateStruct processDecodeStage(int tick);
 
 void updateDecodeStage(struct fetchStateStruct fs);
+void setDecodeHazard(int bubble_ctr);
 
 #endif /* decodeStage_h */

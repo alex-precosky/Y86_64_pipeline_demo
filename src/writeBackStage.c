@@ -44,7 +44,7 @@ struct writeBackStateStruct processWriteBackStage(int tick) {
   else
     instr = exceptionStr;
 
-  printReg("W", // char* stage
+  printReg("  W", // char* stage
 	   tick, // int tick
 	   wbs.PC, // PC
 	   wbs.icode, // icode
