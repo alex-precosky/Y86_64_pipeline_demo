@@ -53,16 +53,31 @@ struct fetchStateStruct getFetchState()
 
 struct fetchStateStruct processFetchStage(int tick) {
 
+  unsigned char* icodePtr = fs.instBase + fs.PC;
 
-  fs.icode = (*(fs.instBase + fs.PC) & 0xF0) >> 4;
-  fs.ifun = *(fs.instBase + fs.PC) & 0x0F;
-  
+  if(icodePtr > fs.lastAddr)
+    {
+      fs.icode=ADDRESSING_EXCEPTION;
+      fs.ifun = 1;
+    }
+  else
+    {
+      fs.icode = (*(icodePtr) & 0xF0) >> 4;
+      fs.ifun = *(fs.instBase + fs.PC) & 0x0F;
+    }
+
 
   if( fs.icode == HALT )
     {
       fs.valP = fs.PC + 1;
       fs.rA = 0xF;
       fs.rB = 0xF;
+    }
+  else if( fs.icode == ADDRESSING_EXCEPTION)
+    {
+      fs.rA = 0xF;
+      fs.rB = 0xF;
+      fs.valC = 0;
     }
   else if( fs.icode == NOP)
     {
@@ -106,11 +121,17 @@ struct fetchStateStruct processFetchStage(int tick) {
     }
   else if( fs.icode == JUMP)
     {
-      fs.valP = *(uint64_t *)(fs.instBase + fs.PC + 1);
+      fs.rA = UNNEEDED_REG;
+      fs.rB = UNNEEDED_REG;
+      fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 1);
+      fs.valP = fs.PC+9;
     }
   else if( fs.icode == CALL)
     {
-      fs.valP = *(uint64_t *)(fs.instBase+fs.PC+1);
+      fs.rA = UNNEEDED_REG;
+      fs.rB = UNNEEDED_REG;
+      fs.valC = *(uint64_t *)(fs.instBase+fs.PC+1);
+      fs.valP = fs.PC+9;
     }
   else if( fs.icode == RET)
     {
@@ -134,11 +155,15 @@ struct fetchStateStruct processFetchStage(int tick) {
 
   int isValidFunction = validFunctionCode(fs.icode, fs.ifun);
   char* instr;
-  char* exceptionStr = "Exception";
+  char exceptionStr[25];
   if(isValidFunction)
     instr = getInstructionMnemonic(fs.icode, fs.ifun);
   else
-    instr = exceptionStr;
+    {
+      sprintf(exceptionStr, "ADDR EXCEP pc = %x", fs.PC);
+      instr = exceptionStr;
+    }
+
 
   char stage[4];
 
@@ -168,9 +193,14 @@ struct fetchStateStruct processFetchStage(int tick) {
   return fs;
 }
 
-void updateFetchStage(uint64_t valP)
+void updateFetchStage()
 {
-  fs.PC = valP;
+
+  if(fs.icode == JUMP || fs.icode == CALL)
+    fs.PC = fs.valC;
+  else
+    fs.PC = fs.valP;
+
 }
 
 void setFetchHazard(int bubble_ctr)

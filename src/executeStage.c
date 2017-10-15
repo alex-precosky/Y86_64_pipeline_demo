@@ -42,11 +42,17 @@ struct executeStateStruct processExecuteStage(int tick) {
 
   int isValidFunction = validFunctionCode(es.icode, es.ifun);
   char* instr;
-  char* exceptionStr = "Exception";
+
+
+  char exceptionStr[25];
   if(isValidFunction)
     instr = getInstructionMnemonic(es.icode, es.ifun);
   else
-    instr = exceptionStr;
+    {
+      sprintf(exceptionStr, "ADDR EXCEP pc = %x", es.PC);
+      instr = exceptionStr;
+    }
+
 
 
   printReg("  E", // char* stage

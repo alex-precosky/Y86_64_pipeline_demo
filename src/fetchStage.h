@@ -42,6 +42,6 @@ struct fetchStateStruct {
 struct fetchStateStruct processFetchStage(int tick);
 struct fetchStateStruct getFetchState();
 int initializeFetchState(int memoryFileFD, uint64_t initialPC);
-void updateFetchStage(uint64_t valP);
+void updateFetchStage();
 void setFetchHazard(int bubble_ctr);
 #endif /* fetchStage_h */

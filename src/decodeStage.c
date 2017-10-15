@@ -49,11 +49,16 @@ struct decodeStateStruct processDecodeStage(int tick) {
 
   int isValidFunction = validFunctionCode(ds.icode, ds.ifun);
   char* instr;
-  char* exceptionStr = "Exception";
+
+  char exceptionStr[25];
   if(isValidFunction)
     instr = getInstructionMnemonic(ds.icode, ds.ifun);
   else
-    instr = exceptionStr;
+    {
+      sprintf(exceptionStr, "ADDR EXCEP pc = %x", ds.PC);
+      instr = exceptionStr;
+    }
+
 
   if( ds.icode == IRMOV || ds.icode == RRMOV )
     ds.destE = ds.rB;

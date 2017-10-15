@@ -106,7 +106,8 @@ int main(int argc, char **argv) {
 	  printf("Hazard\n");
 	  bubble_position = 3;
 
-	  updateFetchStage(fs.valP);
+	  
+	  updateFetchStage();
 	  updateDecodeStage(fs);
 
 	  setFetchHazard(bubble_position);
@@ -145,7 +146,7 @@ int main(int argc, char **argv) {
 	{
 	  setFetchHazard(0);
 	  setDecodeHazard(0);
-	  updateFetchStage(fs.valP);
+	  updateFetchStage();
 	  updateDecodeStage(fs);
 	  updateExecuteStage(ds);
 	  bubble_position--;
