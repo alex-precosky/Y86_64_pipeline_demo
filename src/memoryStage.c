@@ -33,18 +33,10 @@ struct memoryStateStruct initializeMemoryStage(void)
 
 struct memoryStateStruct processMemoryStage(int tick) {
 
-  // probably empty as well but here is sample of printing
-//   printReg("M", 10, 45, 1, 0, 0, UNNEEDED_REG, UNNEEDED_REG,
-//	     0, UNNEEDED_REG, UNNEEDED_REG,
-//            1, 0xf, 0xf, 0, UNNEEDED_ADDR, 0, UNNEEDED_ADDR, "NOP");
 
-  int isValidFunction = validFunctionCode(ms.icode, ms.ifun);
-  char* instr;
-  char* exceptionStr = "Exception";
-  if(isValidFunction)
-    instr = getInstructionMnemonic(ms.icode, ms.ifun);
-  else
-    instr = exceptionStr;
+  char instr[50];
+  getInstructionOrExceptionMnemonic(instr, ms.icode, ms.ifun, ms.exception_icode, ms.exception_ifun, ms.PC);
+
 
   printReg("  M", // char* stage
 	   tick, // int tick
@@ -71,4 +63,7 @@ void updateMemoryStage(struct executeStateStruct es)
   ms.destE = es.destE;
   ms.destM = es.destM;
   ms.valP = es.valP;
+
+  ms.exception_icode = es.exception_icode;
+  ms.exception_ifun = es.exception_ifun;
 }

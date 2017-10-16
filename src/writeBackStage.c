@@ -29,20 +29,9 @@ struct writeBackStateStruct initializeWriteBackStage()
 struct writeBackStateStruct processWriteBackStage(int tick) {
   
  
+  char instr[50];
+  getInstructionOrExceptionMnemonic(instr, wbs.icode, wbs.ifun, wbs.exception_icode, wbs.exception_ifun, wbs.PC);
 
-//  printReg("W", 82, 0x299, 7, 2, 0, UNNEEDED_REG, UNNEEDED_REG,
-//	   0, UNNEEDED_REG, UNNEEDED_REG,
-//	   1, 0xF, 0xF, 0, UNNEEDED_ADDR, 0, UNNEEDED_ADDR, 
-//	   getInstructionMnemonic(7, 2));
-  
-
-  int isValidFunction = validFunctionCode(wbs.icode, wbs.ifun);
-  char* instr;
-  char* exceptionStr = "Exception";
-  if(isValidFunction)
-    instr = getInstructionMnemonic(wbs.icode, wbs.ifun);
-  else
-    instr = exceptionStr;
 
   printReg("  W", // char* stage
 	   tick, // int tick
@@ -67,4 +56,7 @@ void updateWriteBackStage(struct memoryStateStruct ms)
   wbs.destE = ms.destE;
   wbs.destM = ms.destM;
   wbs.valP = ms.valP;
+  wbs.exception_icode = ms.exception_icode;
+  wbs.exception_ifun = ms.exception_ifun;
+
 }

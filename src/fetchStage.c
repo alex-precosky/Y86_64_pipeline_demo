@@ -64,8 +64,16 @@ struct fetchStateStruct processFetchStage(int tick) {
     {
       fs.icode = (*(icodePtr) & 0xF0) >> 4;
       fs.ifun = *(fs.instBase + fs.PC) & 0x0F;
-    }
 
+      if(!validFunctionCode(fs.icode, fs.ifun))
+	{
+	  fs.exception_icode = fs.icode;
+	  fs.exception_ifun = fs.ifun;
+	  
+	  fs.icode = INVALIDINSTRUCTION_EXCEPTION;
+	  fs.ifun = 0xf;
+	}
+    }
 
   if( fs.icode == HALT )
     {
@@ -150,24 +158,11 @@ struct fetchStateStruct processFetchStage(int tick) {
       fs.valP = fs.PC+2;
     }
 
-  
-
-
-  int isValidFunction = validFunctionCode(fs.icode, fs.ifun);
-  char* instr;
-  char exceptionStr[25];
-  if(isValidFunction)
-    instr = getInstructionMnemonic(fs.icode, fs.ifun);
-  else
-    {
-      sprintf(exceptionStr, "ADDR EXCEP pc = %x", fs.PC);
-      instr = exceptionStr;
-    }
+  char instr[50];
+  getInstructionOrExceptionMnemonic(instr, fs.icode, fs.ifun, fs.exception_icode, fs.exception_ifun, fs.PC);
 
 
   char stage[4];
-
-
   if(fs.bubble_ctr == 0)
     strcpy(stage, "  F");
   else if(fs.bubble_ctr==1)

@@ -40,19 +40,8 @@ struct executeStateStruct processExecuteStage(int tick) {
 //	     1, 3, 4,
 //	   1, 4, 0xF, 0, UNNEEDED_ADDR, 0, UNNEEDED_ADDR, getInstructionMnemonic(2,2));
 
-  int isValidFunction = validFunctionCode(es.icode, es.ifun);
-  char* instr;
-
-
-  char exceptionStr[25];
-  if(isValidFunction)
-    instr = getInstructionMnemonic(es.icode, es.ifun);
-  else
-    {
-      sprintf(exceptionStr, "ADDR EXCEP pc = %x", es.PC);
-      instr = exceptionStr;
-    }
-
+  char instr[50];
+  getInstructionOrExceptionMnemonic(instr, es.icode, es.ifun, es.exception_icode, es.exception_ifun, es.PC);
 
 
   printReg("  E", // char* stage
@@ -84,4 +73,7 @@ void updateExecuteStage(struct decodeStateStruct ds)
   es.destE = ds.destE;
   es.destM = ds.destM;
   es.valP = ds.valP;
+
+  es.exception_icode = ds.exception_icode;
+  es.exception_ifun = ds.exception_ifun;
 }

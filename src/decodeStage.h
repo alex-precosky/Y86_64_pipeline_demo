@@ -34,6 +34,10 @@ struct decodeStateStruct {
   nibble destE;
   nibble destM;
 
+  // holds the original icode and ifun in an exception
+  nibble exception_icode;
+  nibble exception_ifun;
+
   int bubble_ctr;
 };
 

@@ -8,6 +8,8 @@
 
 #include "instructionSpecifications.h"
 #include <unistd.h>
+#include <stdio.h>
+#include <string.h>
 
 // mnemoics for the various intructions
 
@@ -121,4 +123,31 @@ int getInstructionSize(nibble iCode) {
     return len;
 }
 
+void getInstructionOrExceptionMnemonic(char* dst, nibble icode, nibble ifun, nibble exception_icode, nibble exception_ifun, uint64_t PC)
+{
+  // build a string for "instr" for the printing
+  char exceptionStr[50];
+  char* instr;
+  if(icode==ADDRESSING_EXCEPTION)
+    {
+      sprintf(exceptionStr, "ADDR EXCEP pc = %x", PC);
+      instr = exceptionStr;
+    }
+  else if(icode==ADDRESSING_EXCEPTION2)
+    {
+      sprintf(exceptionStr, "ADDR EXCEP icode = %x ifun = %x pc = %x", exception_icode, exception_ifun, PC);
+      instr = exceptionStr;
+    }
+  else if(icode==INVALIDINSTRUCTION_EXCEPTION)
+    {
+      sprintf(exceptionStr, "INV INS %x %x", exception_icode, exception_ifun);
+      instr = exceptionStr;
+    }
+  else
+    {
+        instr = getInstructionMnemonic(icode, ifun);
+    }
+
+  strcpy(dst, instr);
+}
 

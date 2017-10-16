@@ -26,6 +26,10 @@ struct memoryStateStruct {
   uint8_t destM;
   uint64_t valE;
   uint64_t valP;
+
+  // holds the original icode and ifun in an exception
+  nibble exception_icode;
+  nibble exception_ifun;
 };
 
 struct memoryStateStruct initializeMemoryStage(void);

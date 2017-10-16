@@ -47,18 +47,9 @@ struct decodeStateStruct processDecodeStage(int tick) {
 //	      1, 7, 15, 1, 0x1473817134381 , 1, 10+10, "irmovq" );
 
 
-  int isValidFunction = validFunctionCode(ds.icode, ds.ifun);
-  char* instr;
 
-  char exceptionStr[25];
-  if(isValidFunction)
-    instr = getInstructionMnemonic(ds.icode, ds.ifun);
-  else
-    {
-      sprintf(exceptionStr, "ADDR EXCEP pc = %x", ds.PC);
-      instr = exceptionStr;
-    }
-
+  char instr[50];
+  getInstructionOrExceptionMnemonic(instr, ds.icode, ds.ifun, ds.exception_icode, ds.exception_ifun, ds.PC);
 
   if( ds.icode == IRMOV || ds.icode == RRMOV )
     ds.destE = ds.rB;
@@ -103,6 +94,8 @@ void updateDecodeStage(struct fetchStateStruct fs)
   ds.valP = fs.valP;
   ds.rA = fs.rA;
   ds.rB = fs.rB;
+  ds.exception_icode = fs.exception_icode;
+  ds.exception_ifun = fs.exception_ifun;
 }
 
 
