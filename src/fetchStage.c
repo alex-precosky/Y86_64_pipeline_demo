@@ -196,6 +196,8 @@ struct fetchStateStruct processFetchStage(int tick) {
   else if( fs.icode == RET)
     {
       fs.valP = fs.PC+1;
+      fs.rA = UNNEEDED_REG;
+      fs.rB = UNNEEDED_REG;
     }
   else if( fs.icode == PUSH)
     {
