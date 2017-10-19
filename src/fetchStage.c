@@ -100,6 +100,7 @@ struct fetchStateStruct processFetchStage(int tick) {
       fs.rA = 0xF;
       fs.rB = 0xF;
       fs.valC = 0;
+      fs.valP = fs.PC;
     }
   else if( fs.icode == NOP)
     {
