@@ -102,17 +102,18 @@ int main(int argc, char **argv) {
 
       // checking for a hazard and there not being a bubble already
       if(((fs.rA == ds.destE && fs.rA != UNNEEDED_REG) 
+	  ||(fs.rB == ds.destE && fs.rB != UNNEEDED_REG)
 	  ||(fs.icode==PUSH && ds.icode==PUSH)
 	  ||(fs.icode==POP && ds.icode==PUSH)
 	  ||(fs.icode==POP && ds.icode==POP)
 	  ||(fs.icode==PUSH && ds.icode==POP)
-	  || fs.icode==RET)
-	 && bubble_position < 0)
+	  ||(fs.rA == ds.destM)
+	  )
+	 && bubble_position < 0 && clock > 0)
 	{
 	  printf("Hazard\n");
+
 	  bubble_position = 3;
-	  if(fs.icode==RET)
-	    bubble_position = 2;
 	  
 	  updateFetchStage();
 	  updateDecodeStage(fs);
@@ -122,7 +123,22 @@ int main(int argc, char **argv) {
 
 	  bubble_position--;
 	}
+      else if( (fs.icode==RET 
+	       || (fs.rB==es.destE && fs.rB != UNNEEDED_REG))
+	       && bubble_position < 0)
+	{
+	  printf("Hazard\n");
 
+	  bubble_position = 2;
+	  
+	  updateFetchStage();
+	  updateDecodeStage(fs);
+
+	  setFetchHazard(bubble_position);
+	  setDecodeHazard(bubble_position);
+
+	  bubble_position--;
+	}
       else if(bubble_position == 2) // previously detected bubble in progress
 	{
 	  setFetchHazard(bubble_position);

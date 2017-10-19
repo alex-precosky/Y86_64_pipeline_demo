@@ -53,6 +53,8 @@ struct decodeStateStruct processDecodeStage(int tick) {
 
   if( ds.icode == IRMOV || ds.icode == RRMOV )
     ds.destE = ds.rB;
+  else if( ds.icode == MRMOV )
+    ds.destM = ds.rA;
   else
     ds.destE = 0xF;
 

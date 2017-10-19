@@ -51,6 +51,20 @@ struct fetchStateStruct getFetchState()
   return fs;
 }
 
+
+int checkAddr2Exception()
+{
+  if(fs.instBase + fs.valP > fs.lastAddr)
+    {
+      fs.exception_icode = fs.icode;
+      fs.exception_ifun = fs.ifun;
+      fs.icode = ADDRESSING_EXCEPTION2;
+      fs.valP = fs.PC;
+      return 1;
+    }
+  return 0;
+}
+
 struct fetchStateStruct processFetchStage(int tick) {
 
   unsigned char* icodePtr = fs.instBase + fs.PC;
@@ -95,51 +109,87 @@ struct fetchStateStruct processFetchStage(int tick) {
     }
   else if( fs.icode == RRMOV) //rrmovq, cmovXX
     {
-      fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
-      fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
-      fs.valC = 0x00;
       fs.valP = fs.PC + 2;
+      fs.valC = 0x00;
+      if(!checkAddr2Exception())
+	{
+	  fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
+	  fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
+	}
     }
   else if( fs.icode == IRMOV)
     {
-      fs.rA = UNNEEDED_REG;
-      fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
-      fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
       fs.valP = fs.PC + 10;
+      fs.rA = UNNEEDED_REG;
+      if(!checkAddr2Exception())
+	{
+	  fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
+	  fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
+	}
+      else
+	fs.valC = 0;
+
     }
   else if( fs.icode == RMMOV)
     {
-      fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
-      fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
-      fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
       fs.valP = fs.PC + 10;
+      if(!checkAddr2Exception())
+	{
+	  fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
+	  fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
+	  fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
+	}
+      else
+	fs.valC = 0;
+
     }
   else if( fs.icode == MRMOV)
     {
-      fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
-      fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
-      fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
       fs.valP = fs.PC + 10;
+      if(!checkAddr2Exception())
+	{
+	  fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
+	  fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
+	  fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
+	}
+      else
+	fs.valC = 0;
+
     }
   else if( fs.icode == MATH) // OPq
     {
-      fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
-      fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
       fs.valP = fs.PC + 2;
+      if(!checkAddr2Exception())
+	{
+	  fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
+	  fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
+	}
+
     }
   else if( fs.icode == JUMP)
     {
+      fs.valP = fs.PC+9;
+      if(!checkAddr2Exception())
+	{
+	  fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 1);
+	}
+      else
+	fs.valC = 0;
+
       fs.rA = UNNEEDED_REG;
       fs.rB = UNNEEDED_REG;
-      fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 1);
-      fs.valP = fs.PC+9;
+
     }
   else if( fs.icode == CALL)
     {
+      fs.valP = fs.PC+9;
       fs.rA = UNNEEDED_REG;
       fs.rB = UNNEEDED_REG;
-      fs.valC = *(uint64_t *)(fs.instBase+fs.PC+1);
-      fs.valP = fs.PC+9;
+
+      if(!checkAddr2Exception())
+	fs.valC = *(uint64_t *)(fs.instBase+fs.PC+1);
+      else
+	fs.valC = 0;
     }
   else if( fs.icode == RET)
     {
@@ -147,15 +197,20 @@ struct fetchStateStruct processFetchStage(int tick) {
     }
   else if( fs.icode == PUSH)
     {
-      fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
       fs.rB = UNNEEDED_REG;
       fs.valP = fs.PC+2;
+      if(!checkAddr2Exception())
+	fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
+
     }
   else if( fs.icode == POP)
     {
-      fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
       fs.rB = 0xF;
       fs.valP = fs.PC+2;
+      if(!checkAddr2Exception())
+	{
+	  fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
+	}
     }
 
   char instr[50];

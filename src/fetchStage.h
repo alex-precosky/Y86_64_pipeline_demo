@@ -49,4 +49,5 @@ struct fetchStateStruct getFetchState();
 int initializeFetchState(int memoryFileFD, uint64_t initialPC);
 void updateFetchStage();
 void setFetchHazard(int bubble_ctr);
+int checkAddr2Exception();
 #endif /* fetchStage_h */
