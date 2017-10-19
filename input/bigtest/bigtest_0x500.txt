@@ -1,0 +1,790 @@
+Opened bigtest.mem, starting offset 0x0000000000000500 stop time = 
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W        0    00000000 :     1     0    -  -   -   -   F   F                                      NOP
+ M        0    00000000 :     1     0    -  -   -   -   F   F                                      NOP
+ E        0    00000000 :     1     0    -  -   F   F   F   F                                      NOP
+ D        0    00000000 :     1     0    F  F   F   F   F   F  8181818181818181 8181818181818181   NOP
+ F        0    00000500 :     4     0    0  0   -   -   -   -  0000BEEFDEADFEED 000000000000050A   rmmovq
+
+ W        1    00000000 :     1     0    -  -   -   -   F   F                                      NOP
+ M        1    00000000 :     1     0    -  -   -   -   F   F                                      NOP
+ E        1    00000000 :     1     0    -  -   F   F   F   F                                      NOP
+ D        1    00000500 :     4     0    0  0   0   0   F   F  0000BEEFDEADFEED 000000000000050A   rmmovq
+ F        1    0000050A :     4     0    0  1   -   -   -   -  00000000BEEFDEAD 0000000000000514   rmmovq
+
+ W        2    00000000 :     1     0    -  -   -   -   F   F                                      NOP
+ M        2    00000000 :     1     0    -  -   -   -   F   F                                      NOP
+ E        2    00000500 :     4     0    -  -   0   0   F   F                                      rmmovq
+ D        2    0000050A :     4     0    0  1   0   1   F   F  00000000BEEFDEAD 0000000000000514   rmmovq
+ F        2    00000514 :     4     0    0  2   -   -   -   -  00000000BEEFDEAD 000000000000051E   rmmovq
+
+ W        3    00000000 :     1     0    -  -   -   -   F   F                                      NOP
+ M        3    00000500 :     4     0    -  -   -   -   F   F                                      rmmovq
+ E        3    0000050A :     4     0    -  -   0   1   F   F                                      rmmovq
+ D        3    00000514 :     4     0    0  2   0   2   F   F  00000000BEEFDEAD 000000000000051E   rmmovq
+ F        3    0000051E :     4     0    0  3   -   -   -   -  0000BEEFDEADFEED 0000000000000528   rmmovq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W        4    00000500 :     4     0    -  -   -   -   F   F                                      rmmovq
+ M        4    0000050A :     4     0    -  -   -   -   F   F                                      rmmovq
+ E        4    00000514 :     4     0    -  -   0   2   F   F                                      rmmovq
+ D        4    0000051E :     4     0    0  3   0   3   F   F  0000BEEFDEADFEED 0000000000000528   rmmovq
+ F        4    00000528 :     4     0    0  6   -   -   -   -  00000000BEEFDEAD 0000000000000532   rmmovq
+
+ W        5    0000050A :     4     0    -  -   -   -   F   F                                      rmmovq
+ M        5    00000514 :     4     0    -  -   -   -   F   F                                      rmmovq
+ E        5    0000051E :     4     0    -  -   0   3   F   F                                      rmmovq
+ D        5    00000528 :     4     0    0  6   0   6   F   F  00000000BEEFDEAD 0000000000000532   rmmovq
+ F        5    00000532 :     4     0    0  7   -   -   -   -  00000000BEEFDEAD 000000000000053C   rmmovq
+
+ W        6    00000514 :     4     0    -  -   -   -   F   F                                      rmmovq
+ M        6    0000051E :     4     0    -  -   -   -   F   F                                      rmmovq
+ E        6    00000528 :     4     0    -  -   0   6   F   F                                      rmmovq
+ D        6    00000532 :     4     0    0  7   0   7   F   F  00000000BEEFDEAD 000000000000053C   rmmovq
+ F        6    0000053C :     4     0    0  4   -   -   -   -  0000BEEFDEADFEED 0000000000000546   rmmovq
+
+ W        7    0000051E :     4     0    -  -   -   -   F   F                                      rmmovq
+ M        7    00000528 :     4     0    -  -   -   -   F   F                                      rmmovq
+ E        7    00000532 :     4     0    -  -   0   7   F   F                                      rmmovq
+ D        7    0000053C :     4     0    0  4   0   4   F   F  0000BEEFDEADFEED 0000000000000546   rmmovq
+ F        7    00000546 :     4     0    0  5   -   -   -   -  00000BEEFDEADFED 0000000000000550   rmmovq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W        8    00000528 :     4     0    -  -   -   -   F   F                                      rmmovq
+ M        8    00000532 :     4     0    -  -   -   -   F   F                                      rmmovq
+ E        8    0000053C :     4     0    -  -   0   4   F   F                                      rmmovq
+ D        8    00000546 :     4     0    0  5   0   5   F   F  00000BEEFDEADFED 0000000000000550   rmmovq
+ F        8    00000550 :     4     0    0  0   -   -   -   -  00000000BEEFDEAD 000000000000055A   rmmovq
+
+ W        9    00000532 :     4     0    -  -   -   -   F   F                                      rmmovq
+ M        9    0000053C :     4     0    -  -   -   -   F   F                                      rmmovq
+ E        9    00000546 :     4     0    -  -   0   5   F   F                                      rmmovq
+ D        9    00000550 :     4     0    0  0   0   0   F   F  00000000BEEFDEAD 000000000000055A   rmmovq
+ F        9    0000055A :     4     0    1  0   -   -   -   -  00000000BEEFDEAD 0000000000000564   rmmovq
+
+ W       10    0000053C :     4     0    -  -   -   -   F   F                                      rmmovq
+ M       10    00000546 :     4     0    -  -   -   -   F   F                                      rmmovq
+ E       10    00000550 :     4     0    -  -   0   0   F   F                                      rmmovq
+ D       10    0000055A :     4     0    1  0   1   0   F   F  00000000BEEFDEAD 0000000000000564   rmmovq
+ F       10    00000564 :     4     0    2  0   -   -   -   -  00000000BEEFDEAD 000000000000056E   rmmovq
+
+ W       11    00000546 :     4     0    -  -   -   -   F   F                                      rmmovq
+ M       11    00000550 :     4     0    -  -   -   -   F   F                                      rmmovq
+ E       11    0000055A :     4     0    -  -   1   0   F   F                                      rmmovq
+ D       11    00000564 :     4     0    2  0   2   0   F   F  00000000BEEFDEAD 000000000000056E   rmmovq
+ F       11    0000056E :     4     0    3  0   -   -   -   -  00000000BEEFDEAD 0000000000000578   rmmovq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       12    00000550 :     4     0    -  -   -   -   F   F                                      rmmovq
+ M       12    0000055A :     4     0    -  -   -   -   F   F                                      rmmovq
+ E       12    00000564 :     4     0    -  -   2   0   F   F                                      rmmovq
+ D       12    0000056E :     4     0    3  0   3   0   F   F  00000000BEEFDEAD 0000000000000578   rmmovq
+ F       12    00000578 :     4     0    6  0   -   -   -   -  BEEFDEAD77778889 0000000000000582   rmmovq
+
+ W       13    0000055A :     4     0    -  -   -   -   F   F                                      rmmovq
+ M       13    00000564 :     4     0    -  -   -   -   F   F                                      rmmovq
+ E       13    0000056E :     4     0    -  -   3   0   F   F                                      rmmovq
+ D       13    00000578 :     4     0    6  0   6   0   F   F  BEEFDEAD77778889 0000000000000582   rmmovq
+ F       13    00000582 :     4     0    7  0   -   -   -   -  00000000BEEFDEAD 000000000000058C   rmmovq
+
+ W       14    00000564 :     4     0    -  -   -   -   F   F                                      rmmovq
+ M       14    0000056E :     4     0    -  -   -   -   F   F                                      rmmovq
+ E       14    00000578 :     4     0    -  -   6   0   F   F                                      rmmovq
+ D       14    00000582 :     4     0    7  0   7   0   F   F  00000000BEEFDEAD 000000000000058C   rmmovq
+ F       14    0000058C :     4     0    4  0   -   -   -   -  00000000BEEFDEAD 0000000000000596   rmmovq
+
+ W       15    0000056E :     4     0    -  -   -   -   F   F                                      rmmovq
+ M       15    00000578 :     4     0    -  -   -   -   F   F                                      rmmovq
+ E       15    00000582 :     4     0    -  -   7   0   F   F                                      rmmovq
+ D       15    0000058C :     4     0    4  0   4   0   F   F  00000000BEEFDEAD 0000000000000596   rmmovq
+ F       15    00000596 :     4     0    5  0   -   -   -   -  00000000BEEFDEAD 00000000000005A0   rmmovq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       16    00000578 :     4     0    -  -   -   -   F   F                                      rmmovq
+ M       16    00000582 :     4     0    -  -   -   -   F   F                                      rmmovq
+ E       16    0000058C :     4     0    -  -   4   0   F   F                                      rmmovq
+ D       16    00000596 :     4     0    5  0   5   0   F   F  00000000BEEFDEAD 00000000000005A0   rmmovq
+ F       16    000005A0 :     5     0    0  0   -   -   -   -  00000000BEEFDEAD 00000000000005AA   mrmovq
+
+ W       17    00000582 :     4     0    -  -   -   -   F   F                                      rmmovq
+ M       17    0000058C :     4     0    -  -   -   -   F   F                                      rmmovq
+ E       17    00000596 :     4     0    -  -   5   0   F   F                                      rmmovq
+ D       17    000005A0 :     5     0    0  0   0   0   F   0  00000000BEEFDEAD 00000000000005AA   mrmovq
+ F       17    000005AA :     5     0    0  1   -   -   -   -  00000000BEEFDEAD 00000000000005B4   mrmovq
+
+ W       18    0000058C :     4     0    -  -   -   -   F   F                                      rmmovq
+ M       18    00000596 :     4     0    -  -   -   -   F   F                                      rmmovq
+ E       18    000005A0 :     5     0    -  -   0   0   F   0                                      mrmovq
+ D E     18    000005AA :     5     0    0  1   0   1   F   0  00000000BEEFDEAD 00000000000005B4   mrmovq
+ F E     18    000005B4 :     5     0    0  2   -   -   -   -  00000000BEEFDEAD 00000000000005BE   mrmovq
+
+ W       19    00000596 :     4     0    -  -   -   -   F   F                                      rmmovq
+ M       19    000005A0 :     5     0    -  -   -   -   F   0                                      mrmovq
+ E       19    000005AA :     1     0    -  -   F   F   F   F                                      NOP
+ D M     19    000005AA :     5     0    0  1   0   1   F   0  00000000BEEFDEAD 00000000000005B4   mrmovq
+ F M     19    000005B4 :     5     0    0  2   -   -   -   -  00000000BEEFDEAD 00000000000005BE   mrmovq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       20    000005A0 :     5     0    -  -   -   -   F   0                                      mrmovq
+ M       20    000005AA :     1     0    -  -   -   -   F   F                                      NOP
+ E       20    000005AA :     1     0    -  -   F   F   F   F                                      NOP
+ D W     20    000005AA :     5     0    0  1   0   1   F   0  00000000BEEFDEAD 00000000000005B4   mrmovq
+ F W     20    000005B4 :     5     0    0  2   -   -   -   -  00000000BEEFDEAD 00000000000005BE   mrmovq
+
+ W       21    000005AA :     1     0    -  -   -   -   F   F                                      NOP
+ M       21    000005AA :     1     0    -  -   -   -   F   F                                      NOP
+ E       21    000005AA :     1     0    -  -   F   F   F   F                                      NOP
+ D       21    000005AA :     5     0    0  1   0   1   F   0  00000000BEEFDEAD 00000000000005B4   mrmovq
+ F       21    000005B4 :     5     0    0  2   -   -   -   -  00000000BEEFDEAD 00000000000005BE   mrmovq
+
+ W       22    000005AA :     1     0    -  -   -   -   F   F                                      NOP
+ M       22    000005AA :     1     0    -  -   -   -   F   F                                      NOP
+ E       22    000005AA :     5     0    -  -   0   1   F   0                                      mrmovq
+ D E     22    000005B4 :     5     0    0  2   0   2   F   0  00000000BEEFDEAD 00000000000005BE   mrmovq
+ F E     22    000005BE :     5     0    0  3   -   -   -   -  00000000BEEFDEAD 00000000000005C8   mrmovq
+
+ W       23    000005AA :     1     0    -  -   -   -   F   F                                      NOP
+ M       23    000005AA :     5     0    -  -   -   -   F   0                                      mrmovq
+ E       23    000005B4 :     1     0    -  -   F   F   F   F                                      NOP
+ D M     23    000005B4 :     5     0    0  2   0   2   F   0  00000000BEEFDEAD 00000000000005BE   mrmovq
+ F M     23    000005BE :     5     0    0  3   -   -   -   -  00000000BEEFDEAD 00000000000005C8   mrmovq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       24    000005AA :     5     0    -  -   -   -   F   0                                      mrmovq
+ M       24    000005B4 :     1     0    -  -   -   -   F   F                                      NOP
+ E       24    000005B4 :     1     0    -  -   F   F   F   F                                      NOP
+ D W     24    000005B4 :     5     0    0  2   0   2   F   0  00000000BEEFDEAD 00000000000005BE   mrmovq
+ F W     24    000005BE :     5     0    0  3   -   -   -   -  00000000BEEFDEAD 00000000000005C8   mrmovq
+
+ W       25    000005B4 :     1     0    -  -   -   -   F   F                                      NOP
+ M       25    000005B4 :     1     0    -  -   -   -   F   F                                      NOP
+ E       25    000005B4 :     1     0    -  -   F   F   F   F                                      NOP
+ D       25    000005B4 :     5     0    0  2   0   2   F   0  00000000BEEFDEAD 00000000000005BE   mrmovq
+ F       25    000005BE :     5     0    0  3   -   -   -   -  00000000BEEFDEAD 00000000000005C8   mrmovq
+
+ W       26    000005B4 :     1     0    -  -   -   -   F   F                                      NOP
+ M       26    000005B4 :     1     0    -  -   -   -   F   F                                      NOP
+ E       26    000005B4 :     5     0    -  -   0   2   F   0                                      mrmovq
+ D E     26    000005BE :     5     0    0  3   0   3   F   0  00000000BEEFDEAD 00000000000005C8   mrmovq
+ F E     26    000005C8 :     5     0    0  6   -   -   -   -  00000000BEEFDEAD 00000000000005D2   mrmovq
+
+ W       27    000005B4 :     1     0    -  -   -   -   F   F                                      NOP
+ M       27    000005B4 :     5     0    -  -   -   -   F   0                                      mrmovq
+ E       27    000005BE :     1     0    -  -   F   F   F   F                                      NOP
+ D M     27    000005BE :     5     0    0  3   0   3   F   0  00000000BEEFDEAD 00000000000005C8   mrmovq
+ F M     27    000005C8 :     5     0    0  6   -   -   -   -  00000000BEEFDEAD 00000000000005D2   mrmovq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       28    000005B4 :     5     0    -  -   -   -   F   0                                      mrmovq
+ M       28    000005BE :     1     0    -  -   -   -   F   F                                      NOP
+ E       28    000005BE :     1     0    -  -   F   F   F   F                                      NOP
+ D W     28    000005BE :     5     0    0  3   0   3   F   0  00000000BEEFDEAD 00000000000005C8   mrmovq
+ F W     28    000005C8 :     5     0    0  6   -   -   -   -  00000000BEEFDEAD 00000000000005D2   mrmovq
+
+ W       29    000005BE :     1     0    -  -   -   -   F   F                                      NOP
+ M       29    000005BE :     1     0    -  -   -   -   F   F                                      NOP
+ E       29    000005BE :     1     0    -  -   F   F   F   F                                      NOP
+ D       29    000005BE :     5     0    0  3   0   3   F   0  00000000BEEFDEAD 00000000000005C8   mrmovq
+ F       29    000005C8 :     5     0    0  6   -   -   -   -  00000000BEEFDEAD 00000000000005D2   mrmovq
+
+ W       30    000005BE :     1     0    -  -   -   -   F   F                                      NOP
+ M       30    000005BE :     1     0    -  -   -   -   F   F                                      NOP
+ E       30    000005BE :     5     0    -  -   0   3   F   0                                      mrmovq
+ D E     30    000005C8 :     5     0    0  6   0   6   F   0  00000000BEEFDEAD 00000000000005D2   mrmovq
+ F E     30    000005D2 :     5     0    0  7   -   -   -   -  00000000BEEFDEAD 00000000000005DC   mrmovq
+
+ W       31    000005BE :     1     0    -  -   -   -   F   F                                      NOP
+ M       31    000005BE :     5     0    -  -   -   -   F   0                                      mrmovq
+ E       31    000005C8 :     1     0    -  -   F   F   F   F                                      NOP
+ D M     31    000005C8 :     5     0    0  6   0   6   F   0  00000000BEEFDEAD 00000000000005D2   mrmovq
+ F M     31    000005D2 :     5     0    0  7   -   -   -   -  00000000BEEFDEAD 00000000000005DC   mrmovq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       32    000005BE :     5     0    -  -   -   -   F   0                                      mrmovq
+ M       32    000005C8 :     1     0    -  -   -   -   F   F                                      NOP
+ E       32    000005C8 :     1     0    -  -   F   F   F   F                                      NOP
+ D W     32    000005C8 :     5     0    0  6   0   6   F   0  00000000BEEFDEAD 00000000000005D2   mrmovq
+ F W     32    000005D2 :     5     0    0  7   -   -   -   -  00000000BEEFDEAD 00000000000005DC   mrmovq
+
+ W       33    000005C8 :     1     0    -  -   -   -   F   F                                      NOP
+ M       33    000005C8 :     1     0    -  -   -   -   F   F                                      NOP
+ E       33    000005C8 :     1     0    -  -   F   F   F   F                                      NOP
+ D       33    000005C8 :     5     0    0  6   0   6   F   0  00000000BEEFDEAD 00000000000005D2   mrmovq
+ F       33    000005D2 :     5     0    0  7   -   -   -   -  00000000BEEFDEAD 00000000000005DC   mrmovq
+
+ W       34    000005C8 :     1     0    -  -   -   -   F   F                                      NOP
+ M       34    000005C8 :     1     0    -  -   -   -   F   F                                      NOP
+ E       34    000005C8 :     5     0    -  -   0   6   F   0                                      mrmovq
+ D E     34    000005D2 :     5     0    0  7   0   7   F   0  00000000BEEFDEAD 00000000000005DC   mrmovq
+ F E     34    000005DC :     5     0    0  4   -   -   -   -  00000000BEEFDEAD 00000000000005E6   mrmovq
+
+ W       35    000005C8 :     1     0    -  -   -   -   F   F                                      NOP
+ M       35    000005C8 :     5     0    -  -   -   -   F   0                                      mrmovq
+ E       35    000005D2 :     1     0    -  -   F   F   F   F                                      NOP
+ D M     35    000005D2 :     5     0    0  7   0   7   F   0  00000000BEEFDEAD 00000000000005DC   mrmovq
+ F M     35    000005DC :     5     0    0  4   -   -   -   -  00000000BEEFDEAD 00000000000005E6   mrmovq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       36    000005C8 :     5     0    -  -   -   -   F   0                                      mrmovq
+ M       36    000005D2 :     1     0    -  -   -   -   F   F                                      NOP
+ E       36    000005D2 :     1     0    -  -   F   F   F   F                                      NOP
+ D W     36    000005D2 :     5     0    0  7   0   7   F   0  00000000BEEFDEAD 00000000000005DC   mrmovq
+ F W     36    000005DC :     5     0    0  4   -   -   -   -  00000000BEEFDEAD 00000000000005E6   mrmovq
+
+ W       37    000005D2 :     1     0    -  -   -   -   F   F                                      NOP
+ M       37    000005D2 :     1     0    -  -   -   -   F   F                                      NOP
+ E       37    000005D2 :     1     0    -  -   F   F   F   F                                      NOP
+ D       37    000005D2 :     5     0    0  7   0   7   F   0  00000000BEEFDEAD 00000000000005DC   mrmovq
+ F       37    000005DC :     5     0    0  4   -   -   -   -  00000000BEEFDEAD 00000000000005E6   mrmovq
+
+ W       38    000005D2 :     1     0    -  -   -   -   F   F                                      NOP
+ M       38    000005D2 :     1     0    -  -   -   -   F   F                                      NOP
+ E       38    000005D2 :     5     0    -  -   0   7   F   0                                      mrmovq
+ D E     38    000005DC :     5     0    0  4   0   4   F   0  00000000BEEFDEAD 00000000000005E6   mrmovq
+ F E     38    000005E6 :     5     0    0  5   -   -   -   -  00000000BEEFDEAD 00000000000005F0   mrmovq
+
+ W       39    000005D2 :     1     0    -  -   -   -   F   F                                      NOP
+ M       39    000005D2 :     5     0    -  -   -   -   F   0                                      mrmovq
+ E       39    000005DC :     1     0    -  -   F   F   F   F                                      NOP
+ D M     39    000005DC :     5     0    0  4   0   4   F   0  00000000BEEFDEAD 00000000000005E6   mrmovq
+ F M     39    000005E6 :     5     0    0  5   -   -   -   -  00000000BEEFDEAD 00000000000005F0   mrmovq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       40    000005D2 :     5     0    -  -   -   -   F   0                                      mrmovq
+ M       40    000005DC :     1     0    -  -   -   -   F   F                                      NOP
+ E       40    000005DC :     1     0    -  -   F   F   F   F                                      NOP
+ D W     40    000005DC :     5     0    0  4   0   4   F   0  00000000BEEFDEAD 00000000000005E6   mrmovq
+ F W     40    000005E6 :     5     0    0  5   -   -   -   -  00000000BEEFDEAD 00000000000005F0   mrmovq
+
+ W       41    000005DC :     1     0    -  -   -   -   F   F                                      NOP
+ M       41    000005DC :     1     0    -  -   -   -   F   F                                      NOP
+ E       41    000005DC :     1     0    -  -   F   F   F   F                                      NOP
+ D       41    000005DC :     5     0    0  4   0   4   F   0  00000000BEEFDEAD 00000000000005E6   mrmovq
+ F       41    000005E6 :     5     0    0  5   -   -   -   -  00000000BEEFDEAD 00000000000005F0   mrmovq
+
+ W       42    000005DC :     1     0    -  -   -   -   F   F                                      NOP
+ M       42    000005DC :     1     0    -  -   -   -   F   F                                      NOP
+ E       42    000005DC :     5     0    -  -   0   4   F   0                                      mrmovq
+ D E     42    000005E6 :     5     0    0  5   0   5   F   0  00000000BEEFDEAD 00000000000005F0   mrmovq
+ F E     42    000005F0 :     5     0    0  0   -   -   -   -  00000000BEEFDEAD 00000000000005FA   mrmovq
+
+ W       43    000005DC :     1     0    -  -   -   -   F   F                                      NOP
+ M       43    000005DC :     5     0    -  -   -   -   F   0                                      mrmovq
+ E       43    000005E6 :     1     0    -  -   F   F   F   F                                      NOP
+ D M     43    000005E6 :     5     0    0  5   0   5   F   0  00000000BEEFDEAD 00000000000005F0   mrmovq
+ F M     43    000005F0 :     5     0    0  0   -   -   -   -  00000000BEEFDEAD 00000000000005FA   mrmovq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       44    000005DC :     5     0    -  -   -   -   F   0                                      mrmovq
+ M       44    000005E6 :     1     0    -  -   -   -   F   F                                      NOP
+ E       44    000005E6 :     1     0    -  -   F   F   F   F                                      NOP
+ D W     44    000005E6 :     5     0    0  5   0   5   F   0  00000000BEEFDEAD 00000000000005F0   mrmovq
+ F W     44    000005F0 :     5     0    0  0   -   -   -   -  00000000BEEFDEAD 00000000000005FA   mrmovq
+
+ W       45    000005E6 :     1     0    -  -   -   -   F   F                                      NOP
+ M       45    000005E6 :     1     0    -  -   -   -   F   F                                      NOP
+ E       45    000005E6 :     1     0    -  -   F   F   F   F                                      NOP
+ D       45    000005E6 :     5     0    0  5   0   5   F   0  00000000BEEFDEAD 00000000000005F0   mrmovq
+ F       45    000005F0 :     5     0    0  0   -   -   -   -  00000000BEEFDEAD 00000000000005FA   mrmovq
+
+ W       46    000005E6 :     1     0    -  -   -   -   F   F                                      NOP
+ M       46    000005E6 :     1     0    -  -   -   -   F   F                                      NOP
+ E       46    000005E6 :     5     0    -  -   0   5   F   0                                      mrmovq
+ D E     46    000005F0 :     5     0    0  0   0   0   F   0  00000000BEEFDEAD 00000000000005FA   mrmovq
+ F E     46    000005FA :     5     0    1  0   -   -   -   -  01600060BEEFDEAD 0000000000000604   mrmovq
+
+ W       47    000005E6 :     1     0    -  -   -   -   F   F                                      NOP
+ M       47    000005E6 :     5     0    -  -   -   -   F   0                                      mrmovq
+ E       47    000005F0 :     1     0    -  -   F   F   F   F                                      NOP
+ D M     47    000005F0 :     5     0    0  0   0   0   F   0  00000000BEEFDEAD 00000000000005FA   mrmovq
+ F M     47    000005FA :     5     0    1  0   -   -   -   -  01600060BEEFDEAD 0000000000000604   mrmovq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       48    000005E6 :     5     0    -  -   -   -   F   0                                      mrmovq
+ M       48    000005F0 :     1     0    -  -   -   -   F   F                                      NOP
+ E       48    000005F0 :     1     0    -  -   F   F   F   F                                      NOP
+ D W     48    000005F0 :     5     0    0  0   0   0   F   0  00000000BEEFDEAD 00000000000005FA   mrmovq
+ F W     48    000005FA :     5     0    1  0   -   -   -   -  01600060BEEFDEAD 0000000000000604   mrmovq
+
+ W       49    000005F0 :     1     0    -  -   -   -   F   F                                      NOP
+ M       49    000005F0 :     1     0    -  -   -   -   F   F                                      NOP
+ E       49    000005F0 :     1     0    -  -   F   F   F   F                                      NOP
+ D       49    000005F0 :     5     0    0  0   0   0   F   0  00000000BEEFDEAD 00000000000005FA   mrmovq
+ F       49    000005FA :     5     0    1  0   -   -   -   -  01600060BEEFDEAD 0000000000000604   mrmovq
+
+ W       50    000005F0 :     1     0    -  -   -   -   F   F                                      NOP
+ M       50    000005F0 :     1     0    -  -   -   -   F   F                                      NOP
+ E       50    000005F0 :     5     0    -  -   0   0   F   0                                      mrmovq
+ D E     50    000005FA :     5     0    1  0   1   0   F   1  01600060BEEFDEAD 0000000000000604   mrmovq
+ F E     50    00000604 :     6     0    0  2   -   -   -   -  0000000000000000 0000000000000606   addq
+
+ W       51    000005F0 :     1     0    -  -   -   -   F   F                                      NOP
+ M       51    000005F0 :     5     0    -  -   -   -   F   0                                      mrmovq
+ E       51    000005FA :     1     0    -  -   F   F   F   F                                      NOP
+ D M     51    000005FA :     5     0    1  0   1   0   F   1  01600060BEEFDEAD 0000000000000604   mrmovq
+ F M     51    00000604 :     6     0    0  2   -   -   -   -  0000000000000000 0000000000000606   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       52    000005F0 :     5     0    -  -   -   -   F   0                                      mrmovq
+ M       52    000005FA :     1     0    -  -   -   -   F   F                                      NOP
+ E       52    000005FA :     1     0    -  -   F   F   F   F                                      NOP
+ D W     52    000005FA :     5     0    1  0   1   0   F   1  01600060BEEFDEAD 0000000000000604   mrmovq
+ F W     52    00000604 :     6     0    0  2   -   -   -   -  0000000000000000 0000000000000606   addq
+
+ W       53    000005FA :     1     0    -  -   -   -   F   F                                      NOP
+ M       53    000005FA :     1     0    -  -   -   -   F   F                                      NOP
+ E       53    000005FA :     1     0    -  -   F   F   F   F                                      NOP
+ D       53    000005FA :     5     0    1  0   1   0   F   1  01600060BEEFDEAD 0000000000000604   mrmovq
+ F       53    00000604 :     6     0    0  2   -   -   -   -  0000000000000000 0000000000000606   addq
+
+ W       54    000005FA :     1     0    -  -   -   -   F   F                                      NOP
+ M       54    000005FA :     1     0    -  -   -   -   F   F                                      NOP
+ E       54    000005FA :     5     0    -  -   1   0   F   1                                      mrmovq
+ D       54    00000604 :     6     0    0  2   0   2   2   F  0000000000000000 0000000000000606   addq
+ F       54    00000606 :     6     0    0  3   -   -   -   -  0000000000000000 0000000000000608   addq
+
+ W       55    000005FA :     1     0    -  -   -   -   F   F                                      NOP
+ M       55    000005FA :     5     0    -  -   -   -   F   1                                      mrmovq
+ E       55    00000604 :     6     0    -  -   0   2   2   F                                      addq
+ D       55    00000606 :     6     0    0  3   0   3   3   F  0000000000000000 0000000000000608   addq
+ F       55    00000608 :     6     0    0  6   -   -   -   -  0000000000000000 000000000000060A   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       56    000005FA :     5     0    -  -   -   -   F   1                                      mrmovq
+ M       56    00000604 :     6     0    -  -   -   -   2   F                                      addq
+ E       56    00000606 :     6     0    -  -   0   3   3   F                                      addq
+ D       56    00000608 :     6     0    0  6   0   6   6   F  0000000000000000 000000000000060A   addq
+ F       56    0000060A :     6     0    0  7   -   -   -   -  0000000000000000 000000000000060C   addq
+
+ W       57    00000604 :     6     0    -  -   -   -   2   F                                      addq
+ M       57    00000606 :     6     0    -  -   -   -   3   F                                      addq
+ E       57    00000608 :     6     0    -  -   0   6   6   F                                      addq
+ D       57    0000060A :     6     0    0  7   0   7   7   F  0000000000000000 000000000000060C   addq
+ F       57    0000060C :     6     0    0  4   -   -   -   -  0000000000000000 000000000000060E   addq
+
+ W       58    00000606 :     6     0    -  -   -   -   3   F                                      addq
+ M       58    00000608 :     6     0    -  -   -   -   6   F                                      addq
+ E       58    0000060A :     6     0    -  -   0   7   7   F                                      addq
+ D       58    0000060C :     6     0    0  4   0   4   4   F  0000000000000000 000000000000060E   addq
+ F       58    0000060E :     6     0    0  5   -   -   -   -  0000000000000000 0000000000000610   addq
+
+ W       59    00000608 :     6     0    -  -   -   -   6   F                                      addq
+ M       59    0000060A :     6     0    -  -   -   -   7   F                                      addq
+ E       59    0000060C :     6     0    -  -   0   4   4   F                                      addq
+ D       59    0000060E :     6     0    0  5   0   5   5   F  0000000000000000 0000000000000610   addq
+ F       59    00000610 :     6     0    1  6   -   -   -   -  0000000000000000 0000000000000612   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       60    0000060A :     6     0    -  -   -   -   7   F                                      addq
+ M       60    0000060C :     6     0    -  -   -   -   4   F                                      addq
+ E       60    0000060E :     6     0    -  -   0   5   5   F                                      addq
+ D       60    00000610 :     6     0    1  6   1   6   6   F  0000000000000000 0000000000000612   addq
+ F       60    00000612 :     6     0    2  6   -   -   -   -  0000000000000000 0000000000000614   addq
+
+ W       61    0000060C :     6     0    -  -   -   -   4   F                                      addq
+ M       61    0000060E :     6     0    -  -   -   -   5   F                                      addq
+ E       61    00000610 :     6     0    -  -   1   6   6   F                                      addq
+ D E     61    00000612 :     6     0    2  6   2   6   6   F  0000000000000000 0000000000000614   addq
+ F E     61    00000614 :     6     0    3  6   -   -   -   -  0000000000000000 0000000000000616   addq
+
+ W       62    0000060E :     6     0    -  -   -   -   5   F                                      addq
+ M       62    00000610 :     6     0    -  -   -   -   6   F                                      addq
+ E       62    00000612 :     1     0    -  -   F   F   F   F                                      NOP
+ D M     62    00000612 :     6     0    2  6   2   6   6   F  0000000000000000 0000000000000614   addq
+ F M     62    00000614 :     6     0    3  6   -   -   -   -  0000000000000000 0000000000000616   addq
+
+ W       63    00000610 :     6     0    -  -   -   -   6   F                                      addq
+ M       63    00000612 :     1     0    -  -   -   -   F   F                                      NOP
+ E       63    00000612 :     1     0    -  -   F   F   F   F                                      NOP
+ D W     63    00000612 :     6     0    2  6   2   6   6   F  0000000000000000 0000000000000614   addq
+ F W     63    00000614 :     6     0    3  6   -   -   -   -  0000000000000000 0000000000000616   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       64    00000612 :     1     0    -  -   -   -   F   F                                      NOP
+ M       64    00000612 :     1     0    -  -   -   -   F   F                                      NOP
+ E       64    00000612 :     1     0    -  -   F   F   F   F                                      NOP
+ D       64    00000612 :     6     0    2  6   2   6   6   F  0000000000000000 0000000000000614   addq
+ F       64    00000614 :     6     0    3  6   -   -   -   -  0000000000000000 0000000000000616   addq
+
+ W       65    00000612 :     1     0    -  -   -   -   F   F                                      NOP
+ M       65    00000612 :     1     0    -  -   -   -   F   F                                      NOP
+ E       65    00000612 :     6     0    -  -   2   6   6   F                                      addq
+ D E     65    00000614 :     6     0    3  6   3   6   6   F  0000000000000000 0000000000000616   addq
+ F E     65    00000616 :     6     0    6  6   -   -   -   -  0000000000000000 0000000000000618   addq
+
+ W       66    00000612 :     1     0    -  -   -   -   F   F                                      NOP
+ M       66    00000612 :     6     0    -  -   -   -   6   F                                      addq
+ E       66    00000614 :     1     0    -  -   F   F   F   F                                      NOP
+ D M     66    00000614 :     6     0    3  6   3   6   6   F  0000000000000000 0000000000000616   addq
+ F M     66    00000616 :     6     0    6  6   -   -   -   -  0000000000000000 0000000000000618   addq
+
+ W       67    00000612 :     6     0    -  -   -   -   6   F                                      addq
+ M       67    00000614 :     1     0    -  -   -   -   F   F                                      NOP
+ E       67    00000614 :     1     0    -  -   F   F   F   F                                      NOP
+ D W     67    00000614 :     6     0    3  6   3   6   6   F  0000000000000000 0000000000000616   addq
+ F W     67    00000616 :     6     0    6  6   -   -   -   -  0000000000000000 0000000000000618   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       68    00000614 :     1     0    -  -   -   -   F   F                                      NOP
+ M       68    00000614 :     1     0    -  -   -   -   F   F                                      NOP
+ E       68    00000614 :     1     0    -  -   F   F   F   F                                      NOP
+ D       68    00000614 :     6     0    3  6   3   6   6   F  0000000000000000 0000000000000616   addq
+ F       68    00000616 :     6     0    6  6   -   -   -   -  0000000000000000 0000000000000618   addq
+
+ W       69    00000614 :     1     0    -  -   -   -   F   F                                      NOP
+ M       69    00000614 :     1     0    -  -   -   -   F   F                                      NOP
+ E       69    00000614 :     6     0    -  -   3   6   6   F                                      addq
+ D E     69    00000616 :     6     0    6  6   6   6   6   F  0000000000000000 0000000000000618   addq
+ F E     69    00000618 :     6     0    7  6   -   -   -   -  0000000000000000 000000000000061A   addq
+
+ W       70    00000614 :     1     0    -  -   -   -   F   F                                      NOP
+ M       70    00000614 :     6     0    -  -   -   -   6   F                                      addq
+ E       70    00000616 :     1     0    -  -   F   F   F   F                                      NOP
+ D M     70    00000616 :     6     0    6  6   6   6   6   F  0000000000000000 0000000000000618   addq
+ F M     70    00000618 :     6     0    7  6   -   -   -   -  0000000000000000 000000000000061A   addq
+
+ W       71    00000614 :     6     0    -  -   -   -   6   F                                      addq
+ M       71    00000616 :     1     0    -  -   -   -   F   F                                      NOP
+ E       71    00000616 :     1     0    -  -   F   F   F   F                                      NOP
+ D W     71    00000616 :     6     0    6  6   6   6   6   F  0000000000000000 0000000000000618   addq
+ F W     71    00000618 :     6     0    7  6   -   -   -   -  0000000000000000 000000000000061A   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       72    00000616 :     1     0    -  -   -   -   F   F                                      NOP
+ M       72    00000616 :     1     0    -  -   -   -   F   F                                      NOP
+ E       72    00000616 :     1     0    -  -   F   F   F   F                                      NOP
+ D       72    00000616 :     6     0    6  6   6   6   6   F  0000000000000000 0000000000000618   addq
+ F       72    00000618 :     6     0    7  6   -   -   -   -  0000000000000000 000000000000061A   addq
+
+ W       73    00000616 :     1     0    -  -   -   -   F   F                                      NOP
+ M       73    00000616 :     1     0    -  -   -   -   F   F                                      NOP
+ E       73    00000616 :     6     0    -  -   6   6   6   F                                      addq
+ D E     73    00000618 :     6     0    7  6   7   6   6   F  0000000000000000 000000000000061A   addq
+ F E     73    0000061A :     6     0    4  6   -   -   -   -  0000000000000000 000000000000061C   addq
+
+ W       74    00000616 :     1     0    -  -   -   -   F   F                                      NOP
+ M       74    00000616 :     6     0    -  -   -   -   6   F                                      addq
+ E       74    00000618 :     1     0    -  -   F   F   F   F                                      NOP
+ D M     74    00000618 :     6     0    7  6   7   6   6   F  0000000000000000 000000000000061A   addq
+ F M     74    0000061A :     6     0    4  6   -   -   -   -  0000000000000000 000000000000061C   addq
+
+ W       75    00000616 :     6     0    -  -   -   -   6   F                                      addq
+ M       75    00000618 :     1     0    -  -   -   -   F   F                                      NOP
+ E       75    00000618 :     1     0    -  -   F   F   F   F                                      NOP
+ D W     75    00000618 :     6     0    7  6   7   6   6   F  0000000000000000 000000000000061A   addq
+ F W     75    0000061A :     6     0    4  6   -   -   -   -  0000000000000000 000000000000061C   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       76    00000618 :     1     0    -  -   -   -   F   F                                      NOP
+ M       76    00000618 :     1     0    -  -   -   -   F   F                                      NOP
+ E       76    00000618 :     1     0    -  -   F   F   F   F                                      NOP
+ D       76    00000618 :     6     0    7  6   7   6   6   F  0000000000000000 000000000000061A   addq
+ F       76    0000061A :     6     0    4  6   -   -   -   -  0000000000000000 000000000000061C   addq
+
+ W       77    00000618 :     1     0    -  -   -   -   F   F                                      NOP
+ M       77    00000618 :     1     0    -  -   -   -   F   F                                      NOP
+ E       77    00000618 :     6     0    -  -   7   6   6   F                                      addq
+ D E     77    0000061A :     6     0    4  6   4   6   6   F  0000000000000000 000000000000061C   addq
+ F E     77    0000061C :     6     0    5  6   -   -   -   -  0000000000000000 000000000000061E   addq
+
+ W       78    00000618 :     1     0    -  -   -   -   F   F                                      NOP
+ M       78    00000618 :     6     0    -  -   -   -   6   F                                      addq
+ E       78    0000061A :     1     0    -  -   F   F   F   F                                      NOP
+ D M     78    0000061A :     6     0    4  6   4   6   6   F  0000000000000000 000000000000061C   addq
+ F M     78    0000061C :     6     0    5  6   -   -   -   -  0000000000000000 000000000000061E   addq
+
+ W       79    00000618 :     6     0    -  -   -   -   6   F                                      addq
+ M       79    0000061A :     1     0    -  -   -   -   F   F                                      NOP
+ E       79    0000061A :     1     0    -  -   F   F   F   F                                      NOP
+ D W     79    0000061A :     6     0    4  6   4   6   6   F  0000000000000000 000000000000061C   addq
+ F W     79    0000061C :     6     0    5  6   -   -   -   -  0000000000000000 000000000000061E   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       80    0000061A :     1     0    -  -   -   -   F   F                                      NOP
+ M       80    0000061A :     1     0    -  -   -   -   F   F                                      NOP
+ E       80    0000061A :     1     0    -  -   F   F   F   F                                      NOP
+ D       80    0000061A :     6     0    4  6   4   6   6   F  0000000000000000 000000000000061C   addq
+ F       80    0000061C :     6     0    5  6   -   -   -   -  0000000000000000 000000000000061E   addq
+
+ W       81    0000061A :     1     0    -  -   -   -   F   F                                      NOP
+ M       81    0000061A :     1     0    -  -   -   -   F   F                                      NOP
+ E       81    0000061A :     6     0    -  -   4   6   6   F                                      addq
+ D E     81    0000061C :     6     0    5  6   5   6   6   F  0000000000000000 000000000000061E   addq
+ F E     81    0000061E :     6     0    1  0   -   -   -   -  0000000000000000 0000000000000620   addq
+
+ W       82    0000061A :     1     0    -  -   -   -   F   F                                      NOP
+ M       82    0000061A :     6     0    -  -   -   -   6   F                                      addq
+ E       82    0000061C :     1     0    -  -   F   F   F   F                                      NOP
+ D M     82    0000061C :     6     0    5  6   5   6   6   F  0000000000000000 000000000000061E   addq
+ F M     82    0000061E :     6     0    1  0   -   -   -   -  0000000000000000 0000000000000620   addq
+
+ W       83    0000061A :     6     0    -  -   -   -   6   F                                      addq
+ M       83    0000061C :     1     0    -  -   -   -   F   F                                      NOP
+ E       83    0000061C :     1     0    -  -   F   F   F   F                                      NOP
+ D W     83    0000061C :     6     0    5  6   5   6   6   F  0000000000000000 000000000000061E   addq
+ F W     83    0000061E :     6     0    1  0   -   -   -   -  0000000000000000 0000000000000620   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       84    0000061C :     1     0    -  -   -   -   F   F                                      NOP
+ M       84    0000061C :     1     0    -  -   -   -   F   F                                      NOP
+ E       84    0000061C :     1     0    -  -   F   F   F   F                                      NOP
+ D       84    0000061C :     6     0    5  6   5   6   6   F  0000000000000000 000000000000061E   addq
+ F       84    0000061E :     6     0    1  0   -   -   -   -  0000000000000000 0000000000000620   addq
+
+ W       85    0000061C :     1     0    -  -   -   -   F   F                                      NOP
+ M       85    0000061C :     1     0    -  -   -   -   F   F                                      NOP
+ E       85    0000061C :     6     0    -  -   5   6   6   F                                      addq
+ D       85    0000061E :     6     0    1  0   1   0   0   F  0000000000000000 0000000000000620   addq
+ F       85    00000620 :     6     0    1  8   -   -   -   -  0000000000000000 0000000000000622   addq
+
+ W       86    0000061C :     1     0    -  -   -   -   F   F                                      NOP
+ M       86    0000061C :     6     0    -  -   -   -   6   F                                      addq
+ E       86    0000061E :     6     0    -  -   1   0   0   F                                      addq
+ D       86    00000620 :     6     0    1  8   1   8   8   F  0000000000000000 0000000000000622   addq
+ F       86    00000622 :     6     0    2  9   -   -   -   -  0000000000000000 0000000000000624   addq
+
+ W       87    0000061C :     6     0    -  -   -   -   6   F                                      addq
+ M       87    0000061E :     6     0    -  -   -   -   0   F                                      addq
+ E       87    00000620 :     6     0    -  -   1   8   8   F                                      addq
+ D       87    00000622 :     6     0    2  9   2   9   9   F  0000000000000000 0000000000000624   addq
+ F       87    00000624 :     6     0    3  A   -   -   -   -  0000000000000000 0000000000000626   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       88    0000061E :     6     0    -  -   -   -   0   F                                      addq
+ M       88    00000620 :     6     0    -  -   -   -   8   F                                      addq
+ E       88    00000622 :     6     0    -  -   2   9   9   F                                      addq
+ D       88    00000624 :     6     0    3  A   3   A   A   F  0000000000000000 0000000000000626   addq
+ F       88    00000626 :     6     0    6  B   -   -   -   -  0000000000000000 0000000000000628   addq
+
+ W       89    00000620 :     6     0    -  -   -   -   8   F                                      addq
+ M       89    00000622 :     6     0    -  -   -   -   9   F                                      addq
+ E       89    00000624 :     6     0    -  -   3   A   A   F                                      addq
+ D       89    00000626 :     6     0    6  B   6   B   B   F  0000000000000000 0000000000000628   addq
+ F       89    00000628 :     6     0    7  C   -   -   -   -  0000000000000000 000000000000062A   addq
+
+ W       90    00000622 :     6     0    -  -   -   -   9   F                                      addq
+ M       90    00000624 :     6     0    -  -   -   -   A   F                                      addq
+ E       90    00000626 :     6     0    -  -   6   B   B   F                                      addq
+ D       90    00000628 :     6     0    7  C   7   C   C   F  0000000000000000 000000000000062A   addq
+ F       90    0000062A :     6     0    4  D   -   -   -   -  0000000000000000 000000000000062C   addq
+
+ W       91    00000624 :     6     0    -  -   -   -   A   F                                      addq
+ M       91    00000626 :     6     0    -  -   -   -   B   F                                      addq
+ E       91    00000628 :     6     0    -  -   7   C   C   F                                      addq
+ D       91    0000062A :     6     0    4  D   4   D   D   F  0000000000000000 000000000000062C   addq
+ F       91    0000062C :     6     0    5  E   -   -   -   -  0000000000000000 000000000000062E   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       92    00000626 :     6     0    -  -   -   -   B   F                                      addq
+ M       92    00000628 :     6     0    -  -   -   -   C   F                                      addq
+ E       92    0000062A :     6     0    -  -   4   D   D   F                                      addq
+ D       92    0000062C :     6     0    5  E   5   E   E   F  0000000000000000 000000000000062E   addq
+ F       92    0000062E :     6     0    E  5   -   -   -   -  0000000000000000 0000000000000630   addq
+
+ W       93    00000628 :     6     0    -  -   -   -   C   F                                      addq
+ M       93    0000062A :     6     0    -  -   -   -   D   F                                      addq
+ E       93    0000062C :     6     0    -  -   5   E   E   F                                      addq
+ D E     93    0000062E :     6     0    E  5   E   5   5   F  0000000000000000 0000000000000630   addq
+ F E     93    00000630 :     6     0    C  8   -   -   -   -  0000000000000000 0000000000000632   addq
+
+ W       94    0000062A :     6     0    -  -   -   -   D   F                                      addq
+ M       94    0000062C :     6     0    -  -   -   -   E   F                                      addq
+ E       94    0000062E :     1     0    -  -   F   F   F   F                                      NOP
+ D M     94    0000062E :     6     0    E  5   E   5   5   F  0000000000000000 0000000000000630   addq
+ F M     94    00000630 :     6     0    C  8   -   -   -   -  0000000000000000 0000000000000632   addq
+
+ W       95    0000062C :     6     0    -  -   -   -   E   F                                      addq
+ M       95    0000062E :     1     0    -  -   -   -   F   F                                      NOP
+ E       95    0000062E :     1     0    -  -   F   F   F   F                                      NOP
+ D W     95    0000062E :     6     0    E  5   E   5   5   F  0000000000000000 0000000000000630   addq
+ F W     95    00000630 :     6     0    C  8   -   -   -   -  0000000000000000 0000000000000632   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W       96    0000062E :     1     0    -  -   -   -   F   F                                      NOP
+ M       96    0000062E :     1     0    -  -   -   -   F   F                                      NOP
+ E       96    0000062E :     1     0    -  -   F   F   F   F                                      NOP
+ D       96    0000062E :     6     0    E  5   E   5   5   F  0000000000000000 0000000000000630   addq
+ F       96    00000630 :     6     0    C  8   -   -   -   -  0000000000000000 0000000000000632   addq
+
+ W       97    0000062E :     1     0    -  -   -   -   F   F                                      NOP
+ M       97    0000062E :     1     0    -  -   -   -   F   F                                      NOP
+ E       97    0000062E :     6     0    -  -   E   5   5   F                                      addq
+ D       97    00000630 :     6     0    C  8   C   8   8   F  0000000000000000 0000000000000632   addq
+ F       97    00000632 :     6     0    C  9   -   -   -   -  0000000000000000 0000000000000634   addq
+
+ W       98    0000062E :     1     0    -  -   -   -   F   F                                      NOP
+ M       98    0000062E :     6     0    -  -   -   -   5   F                                      addq
+ E       98    00000630 :     6     0    -  -   C   8   8   F                                      addq
+ D       98    00000632 :     6     0    C  9   C   9   9   F  0000000000000000 0000000000000634   addq
+ F       98    00000634 :     6     0    B  A   -   -   -   -  0000000000000000 0000000000000636   addq
+
+ W       99    0000062E :     6     0    -  -   -   -   5   F                                      addq
+ M       99    00000630 :     6     0    -  -   -   -   8   F                                      addq
+ E       99    00000632 :     6     0    -  -   C   9   9   F                                      addq
+ D       99    00000634 :     6     0    B  A   B   A   A   F  0000000000000000 0000000000000636   addq
+ F       99    00000636 :     6     0    A  B   -   -   -   -  0000000000000000 0000000000000638   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W      100    00000630 :     6     0    -  -   -   -   8   F                                      addq
+ M      100    00000632 :     6     0    -  -   -   -   9   F                                      addq
+ E      100    00000634 :     6     0    -  -   B   A   A   F                                      addq
+ D E    100    00000636 :     6     0    A  B   A   B   B   F  0000000000000000 0000000000000638   addq
+ F E    100    00000638 :     6     0    9  C   -   -   -   -  0000000000000000 000000000000063A   addq
+
+ W      101    00000632 :     6     0    -  -   -   -   9   F                                      addq
+ M      101    00000634 :     6     0    -  -   -   -   A   F                                      addq
+ E      101    00000636 :     1     0    -  -   F   F   F   F                                      NOP
+ D M    101    00000636 :     6     0    A  B   A   B   B   F  0000000000000000 0000000000000638   addq
+ F M    101    00000638 :     6     0    9  C   -   -   -   -  0000000000000000 000000000000063A   addq
+
+ W      102    00000634 :     6     0    -  -   -   -   A   F                                      addq
+ M      102    00000636 :     1     0    -  -   -   -   F   F                                      NOP
+ E      102    00000636 :     1     0    -  -   F   F   F   F                                      NOP
+ D W    102    00000636 :     6     0    A  B   A   B   B   F  0000000000000000 0000000000000638   addq
+ F W    102    00000638 :     6     0    9  C   -   -   -   -  0000000000000000 000000000000063A   addq
+
+ W      103    00000636 :     1     0    -  -   -   -   F   F                                      NOP
+ M      103    00000636 :     1     0    -  -   -   -   F   F                                      NOP
+ E      103    00000636 :     1     0    -  -   F   F   F   F                                      NOP
+ D      103    00000636 :     6     0    A  B   A   B   B   F  0000000000000000 0000000000000638   addq
+ F      103    00000638 :     6     0    9  C   -   -   -   -  0000000000000000 000000000000063A   addq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W      104    00000636 :     1     0    -  -   -   -   F   F                                      NOP
+ M      104    00000636 :     1     0    -  -   -   -   F   F                                      NOP
+ E      104    00000636 :     6     0    -  -   A   B   B   F                                      addq
+ D      104    00000638 :     6     0    9  C   9   C   C   F  0000000000000000 000000000000063A   addq
+ F      104    0000063A :     6     0    8  D   -   -   -   -  0000000000000000 000000000000063C   addq
+
+ W      105    00000636 :     1     0    -  -   -   -   F   F                                      NOP
+ M      105    00000636 :     6     0    -  -   -   -   B   F                                      addq
+ E      105    00000638 :     6     0    -  -   9   C   C   F                                      addq
+ D      105    0000063A :     6     0    8  D   8   D   D   F  0000000000000000 000000000000063C   addq
+ F      105    0000063C :     6     0    4  E   -   -   -   -  0000000000000000 000000000000063E   addq
+
+ W      106    00000636 :     6     0    -  -   -   -   B   F                                      addq
+ M      106    00000638 :     6     0    -  -   -   -   C   F                                      addq
+ E      106    0000063A :     6     0    -  -   8   D   D   F                                      addq
+ D      106    0000063C :     6     0    4  E   4   E   E   F  0000000000000000 000000000000063E   addq
+ F      106    0000063E :     6     1    1  6   -   -   -   -  0000000000000000 0000000000000640   subq
+
+ W      107    00000638 :     6     0    -  -   -   -   C   F                                      addq
+ M      107    0000063A :     6     0    -  -   -   -   D   F                                      addq
+ E      107    0000063C :     6     0    -  -   4   E   E   F                                      addq
+ D      107    0000063E :     6     1    1  6   1   6   6   F  0000000000000000 0000000000000640   subq
+ F      107    00000640 :     6     2    2  6   -   -   -   -  0000000000000000 0000000000000642   andq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W      108    0000063A :     6     0    -  -   -   -   D   F                                      addq
+ M      108    0000063C :     6     0    -  -   -   -   E   F                                      addq
+ E      108    0000063E :     6     1    -  -   1   6   6   F                                      subq
+ D E    108    00000640 :     6     2    2  6   2   6   6   F  0000000000000000 0000000000000642   andq
+ F E    108    00000642 :     6     3    3  6   -   -   -   -  0000000000000000 0000000000000644   xorq
+
+ W      109    0000063C :     6     0    -  -   -   -   E   F                                      addq
+ M      109    0000063E :     6     0    -  -   -   -   6   F                                      subq
+ E      109    00000640 :     1     0    -  -   F   F   F   F                                      NOP
+ D M    109    00000640 :     6     2    2  6   2   6   6   F  0000000000000000 0000000000000642   andq
+ F M    109    00000642 :     6     3    3  6   -   -   -   -  0000000000000000 0000000000000644   xorq
+
+ W      110    0000063E :     6     0    -  -   -   -   6   F                                      subq
+ M      110    00000640 :     1     0    -  -   -   -   F   F                                      NOP
+ E      110    00000640 :     1     0    -  -   F   F   F   F                                      NOP
+ D W    110    00000640 :     6     2    2  6   2   6   6   F  0000000000000000 0000000000000642   andq
+ F W    110    00000642 :     6     3    3  6   -   -   -   -  0000000000000000 0000000000000644   xorq
+
+ W      111    00000640 :     1     0    -  -   -   -   F   F                                      NOP
+ M      111    00000640 :     1     0    -  -   -   -   F   F                                      NOP
+ E      111    00000640 :     1     0    -  -   F   F   F   F                                      NOP
+ D      111    00000640 :     6     2    2  6   2   6   6   F  0000000000000000 0000000000000642   andq
+ F      111    00000642 :     6     3    3  6   -   -   -   -  0000000000000000 0000000000000644   xorq
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W      112    00000640 :     1     0    -  -   -   -   F   F                                      NOP
+ M      112    00000640 :     1     0    -  -   -   -   F   F                                      NOP
+ E      112    00000640 :     6     2    -  -   2   6   6   F                                      andq
+ D E    112    00000642 :     6     3    3  6   3   6   6   F  0000000000000000 0000000000000644   xorq
+ F E    112    00000644 :     7     0    F  F   -   -   -   -  0000000000DADDAD 000000000000064D   jmp
+
+ W      113    00000640 :     1     0    -  -   -   -   F   F                                      NOP
+ M      113    00000640 :     6     0    -  -   -   -   6   F                                      andq
+ E      113    00000642 :     1     0    -  -   F   F   F   F                                      NOP
+ D M    113    00000642 :     6     3    3  6   3   6   6   F  0000000000000000 0000000000000644   xorq
+ F M    113    00000644 :     7     0    F  F   -   -   -   -  0000000000DADDAD 000000000000064D   jmp
+
+ W      114    00000640 :     6     0    -  -   -   -   6   F                                      andq
+ M      114    00000642 :     1     0    -  -   -   -   F   F                                      NOP
+ E      114    00000642 :     1     0    -  -   F   F   F   F                                      NOP
+ D W    114    00000642 :     6     3    3  6   3   6   6   F  0000000000000000 0000000000000644   xorq
+ F W    114    00000644 :     7     0    F  F   -   -   -   -  0000000000DADDAD 000000000000064D   jmp
+
+ W      115    00000642 :     1     0    -  -   -   -   F   F                                      NOP
+ M      115    00000642 :     1     0    -  -   -   -   F   F                                      NOP
+ E      115    00000642 :     1     0    -  -   F   F   F   F                                      NOP
+ D      115    00000642 :     6     3    3  6   3   6   6   F  0000000000000000 0000000000000644   xorq
+ F      115    00000644 :     7     0    F  F   -   -   -   -  0000000000DADDAD 000000000000064D   jmp
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W      116    00000642 :     1     0    -  -   -   -   F   F                                      NOP
+ M      116    00000642 :     1     0    -  -   -   -   F   F                                      NOP
+ E      116    00000642 :     6     3    -  -   3   6   6   F                                      xorq
+ D      116    00000644 :     7     0    F  F   F   F   F   F  0000000000DADDAD 000000000000064D   jmp
+ F      116    00DADDAD :    FD     0    F  F   -   -   -   -  0000000000000000 0000000000DADDAD   ADDR EXCEP pc = daddad
+
+ W      117    00000642 :     1     0    -  -   -   -   F   F                                      NOP
+ M      117    00000642 :     6     0    -  -   -   -   6   F                                      xorq
+ E      117    00000644 :     7     0    -  -   F   F   F   F                                      jmp
+ D      117    00DADDAD :    FD     0    F  F   F   F   F   F  0000000000000000 0000000000DADDAD   ADDR EXCEP pc = daddad
+ F      117    00DADDAD :    FD     0    F  F   -   -   -   -  0000000000000000 0000000000DADDAD   ADDR EXCEP pc = daddad
+
+ W      118    00000642 :     6     0    -  -   -   -   6   F                                      xorq
+ M      118    00000644 :     7     0    -  -   -   -   F   F                                      jmp
+ E      118    00DADDAD :    FD     0    -  -   F   F   F   F                                      ADDR EXCEP pc = daddad
+ D      118    00DADDAD :    FD     0    F  F   F   F   F   F  0000000000000000 0000000000DADDAD   ADDR EXCEP pc = daddad
+ F      118    00DADDAD :    FD     0    F  F   -   -   -   -  0000000000000000 0000000000DADDAD   ADDR EXCEP pc = daddad
+
+ W      119    00000644 :     7     0    -  -   -   -   F   F                                      jmp
+ M      119    00DADDAD :    FD     0    -  -   -   -   F   F                                      ADDR EXCEP pc = daddad
+ E      119    00DADDAD :    FD     0    -  -   F   F   F   F                                      ADDR EXCEP pc = daddad
+ D      119    00DADDAD :    FD     0    F  F   F   F   F   F  0000000000000000 0000000000DADDAD   ADDR EXCEP pc = daddad
+ F      119    00DADDAD :    FD     0    F  F   -   -   -   -  0000000000000000 0000000000DADDAD   ADDR EXCEP pc = daddad
+
+
+Stg    Time    PC           icode ifun   rA rB  sA sB dstE DstM     valC            valP           Instruction
+ W      120    00DADDAD :    FD     0    -  -   -   -   F   F                                      ADDR EXCEP pc = daddad
+ M      120    00DADDAD :    FD     0    -  -   -   -   F   F                                      ADDR EXCEP pc = daddad
+ E      120    00DADDAD :    FD     0    -  -   F   F   F   F                                      ADDR EXCEP pc = daddad
+ D      120    00DADDAD :    FD     0    F  F   F   F   F   F  0000000000000000 0000000000DADDAD   ADDR EXCEP pc = daddad
+ F      120    00DADDAD :    FD     0    F  F   -   -   -   -  0000000000000000 0000000000DADDAD   ADDR EXCEP pc = daddad
+Normal termination

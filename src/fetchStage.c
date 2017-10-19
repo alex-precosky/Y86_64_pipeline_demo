@@ -58,7 +58,7 @@ struct fetchStateStruct processFetchStage(int tick) {
   if(icodePtr > fs.lastAddr)
     {
       fs.icode=ADDRESSING_EXCEPTION;
-      fs.ifun = 1;
+      fs.ifun = 0xf;
     }
   else
     {

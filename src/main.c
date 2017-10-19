@@ -101,11 +101,18 @@ int main(int argc, char **argv) {
       // to check for hazards cause stage registers to be updated etc.
 
       // checking for a hazard and there not being a bubble already
-      if(fs.rA == ds.destE && fs.rA != UNNEEDED_REG && bubble_position < 0)
+      if(((fs.rA == ds.destE && fs.rA != UNNEEDED_REG) 
+	  ||(fs.icode==PUSH && ds.icode==PUSH)
+	  ||(fs.icode==POP && ds.icode==PUSH)
+	  ||(fs.icode==POP && ds.icode==POP)
+	  ||(fs.icode==PUSH && ds.icode==POP)
+	  || fs.icode==RET)
+	 && bubble_position < 0)
 	{
 	  printf("Hazard\n");
 	  bubble_position = 3;
-
+	  if(fs.icode==RET)
+	    bubble_position = 2;
 	  
 	  updateFetchStage();
 	  updateDecodeStage(fs);
