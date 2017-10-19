@@ -52,11 +52,20 @@ struct decodeStateStruct processDecodeStage(int tick) {
   getInstructionOrExceptionMnemonic(instr, ds.icode, ds.ifun, ds.exception_icode, ds.exception_ifun, ds.PC);
 
   if( ds.icode == IRMOV || ds.icode == RRMOV )
-    ds.destE = ds.rB;
+    {
+      ds.destE = ds.rB;
+      ds.destM = UNNEEDED_REG;
+    }
   else if( ds.icode == MRMOV )
-    ds.destM = ds.rA;
+    {
+      ds.destM = ds.rA;
+      ds.destE = UNNEEDED_REG;
+    }
   else
-    ds.destE = 0xF;
+    {
+      ds.destE = UNNEEDED_REG;
+      ds.destM = UNNEEDED_REG;
+    }
 
   char stage[4];
 
