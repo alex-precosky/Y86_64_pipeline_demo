@@ -42,7 +42,7 @@ struct memoryStateStruct processMemoryStage(int tick) {
 	   tick, // int tick
 	   ms.PC, // PC
 	   ms.icode, // icode
-	   0, // ifun
+	   ms.ifun, // ifun
 	   0, UNNEEDED_REG, UNNEEDED_REG, // regsValid, rA, rB
 	   0, UNNEEDED_REG, UNNEEDED_REG, // srcValid, srcA, srcB
 	   1, ms.destE, ms.destM, // dstValid, destE, destM
