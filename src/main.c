@@ -107,7 +107,7 @@ int main(int argc, char **argv) {
 	  ||(fs.icode==POP && ds.icode==PUSH)
 	  ||(fs.icode==POP && ds.icode==POP)
 	  ||(fs.icode==PUSH && ds.icode==POP)
-	  ||(fs.rA == ds.destM)
+	  ||(fs.rA == ds.destM && fs.rA != UNNEEDED_REG)
 	  )
 	 && bubble_position < 0 && clock > 0)
 	{
@@ -124,12 +124,29 @@ int main(int argc, char **argv) {
 	  bubble_position--;
 	}
       else if( (fs.icode==RET 
-	       || (fs.rB==es.destE && fs.rB != UNNEEDED_REG))
+	       || (fs.rB==es.destE && fs.rB != UNNEEDED_REG)
+		||(fs.rA==es.destE && fs.rA != UNNEEDED_REG))
 	       && bubble_position < 0)
 	{
 	  printf("Hazard\n");
 
 	  bubble_position = 2;
+	  
+	  updateFetchStage();
+	  updateDecodeStage(fs);
+
+	  setFetchHazard(bubble_position);
+	  setDecodeHazard(bubble_position);
+
+	  bubble_position--;
+	}
+      else if( ((fs.rB==ms.destE && fs.rB != UNNEEDED_REG)
+		||(fs.rA==ms.destE && fs.rA != UNNEEDED_REG))
+	       && bubble_position < 0)
+	{
+	  printf("Hazard\n");
+
+	  bubble_position = 1;
 	  
 	  updateFetchStage();
 	  updateDecodeStage(fs);
