@@ -106,6 +106,7 @@ struct fetchStateStruct processFetchStage(int tick) {
       fs.valP = fs.PC + 1;
       fs.rA = 0xF;
       fs.rB = 0xF;
+      fs.valC = 0;
     }
   else if( fs.icode == RRMOV) //rrmovq, cmovXX
     {
