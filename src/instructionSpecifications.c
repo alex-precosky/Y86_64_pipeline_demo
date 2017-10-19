@@ -130,12 +130,12 @@ void getInstructionOrExceptionMnemonic(char* dst, nibble icode, nibble ifun, nib
   char* instr;
   if(icode==ADDRESSING_EXCEPTION)
     {
-      sprintf(exceptionStr, "ADDR EXCEP pc = %x", PC);
+      sprintf(exceptionStr, "ADDR EXCEP pc = %llx", PC);
       instr = exceptionStr;
     }
   else if(icode==ADDRESSING_EXCEPTION2)
     {
-      sprintf(exceptionStr, "ADDR EXCEP icode = %x ifun = %x pc = %x", exception_icode, exception_ifun, PC);
+      sprintf(exceptionStr, "ADDR EXCEP icode = %x ifun = %x pc = %llx", exception_icode, exception_ifun, PC);
       instr = exceptionStr;
     }
   else if(icode==INVALIDINSTRUCTION_EXCEPTION)
