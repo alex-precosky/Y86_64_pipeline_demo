@@ -67,6 +67,9 @@ struct decodeStateStruct processDecodeStage(int tick) {
       ds.destM = UNNEEDED_REG;
     }
 
+  ds.srcA = ds.rA;
+  ds.srcB = ds.rB;
+
   char stage[4];
 
  if(ds.bubble_ctr == 0)

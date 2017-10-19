@@ -111,6 +111,7 @@ int main(int argc, char **argv) {
 	  ||(fs.icode==POP && ds.icode==POP)
 	  ||(fs.icode==PUSH && ds.icode==POP)
 	  ||(fs.rA == ds.destM && fs.rA != UNNEEDED_REG)
+	  || (fs.icode==CALL)
 	  )
 	 && bubble_position < 0 && clock > 0)
 	{
@@ -128,7 +129,9 @@ int main(int argc, char **argv) {
 	}
       else if( (fs.icode==RET 
 	       || (fs.rB==es.destE && fs.rB != UNNEEDED_REG && fs.icode != IRMOV && fs.icode != RRMOV)
-		||(fs.rA==es.destE && fs.rA != UNNEEDED_REG))
+		||(fs.rA==es.destE && fs.rA != UNNEEDED_REG)
+		||(fs.rA == es.destM && fs.rA != UNNEEDED_REG)
+		||(fs.rB == es.destM && fs.rB != UNNEEDED_REG))
 	       && bubble_position < 0)
 	{
 	  printf("Hazard\n");
@@ -144,7 +147,9 @@ int main(int argc, char **argv) {
 	  bubble_position--;
 	}
       else if( ((fs.rB==ms.destE && fs.rB != UNNEEDED_REG && fs.icode != IRMOV && fs.icode != RRMOV)
-		||(fs.rA==ms.destE && fs.rA != UNNEEDED_REG))
+		||(fs.rA==ms.destE && fs.rA != UNNEEDED_REG)
+		||(fs.rA == ms.destM && fs.rA != UNNEEDED_REG)
+		||(fs.rB == ms.destM && fs.rB != UNNEEDED_REG))
 	       && bubble_position < 0)
 	{
 	  printf("Hazard\n");
