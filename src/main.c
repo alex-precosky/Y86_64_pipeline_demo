@@ -102,7 +102,7 @@ int main(int argc, char **argv) {
 
       // checking for a hazard and there not being a bubble already
       if(((fs.rA == ds.destE && fs.rA != UNNEEDED_REG) 
-	  ||(fs.rB == ds.destE && fs.rB != UNNEEDED_REG && fs.icode != IRMOV)
+	  ||(fs.rB == ds.destE && fs.rB != UNNEEDED_REG && fs.icode != IRMOV && fs.icode != RRMOV)
 	  ||(fs.rB == ds.destM && fs.rB != UNNEEDED_REG)
 	  ||(fs.rA == ds.rB && ds.icode == MATH)
 	  ||(fs.rB == ds.rB && ds.icode == MATH)
@@ -127,7 +127,7 @@ int main(int argc, char **argv) {
 	  bubble_position--;
 	}
       else if( (fs.icode==RET 
-	       || (fs.rB==es.destE && fs.rB != UNNEEDED_REG && fs.icode != IRMOV)
+	       || (fs.rB==es.destE && fs.rB != UNNEEDED_REG && fs.icode != IRMOV && fs.icode != RRMOV)
 		||(fs.rA==es.destE && fs.rA != UNNEEDED_REG))
 	       && bubble_position < 0)
 	{
@@ -143,7 +143,7 @@ int main(int argc, char **argv) {
 
 	  bubble_position--;
 	}
-      else if( ((fs.rB==ms.destE && fs.rB != UNNEEDED_REG)
+      else if( ((fs.rB==ms.destE && fs.rB != UNNEEDED_REG && fs.icode != IRMOV && fs.icode != RRMOV)
 		||(fs.rA==ms.destE && fs.rA != UNNEEDED_REG))
 	       && bubble_position < 0)
 	{
