@@ -16,10 +16,10 @@ struct decodeStateStruct {
 
   uint64_t PC;  // The program counter associated with this instruction
 
-  // Add fields here to capture stage registers and state associated with 
+  // Add fields here to capture stage registers and state associated with
   // processing and managing the stage. Note that when the simulation starts
-  // the stage registers are initailized to indicate that on the first 
-  // clock tick that this stage is working on a NOP instruction from address 
+  // the stage registers are initailized to indicate that on the first
+  // clock tick that this stage is working on a NOP instruction from address
   // 0.
   nibble icode;
   nibble ifun;

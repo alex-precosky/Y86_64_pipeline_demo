@@ -13,9 +13,9 @@
 #include "decodeStage.h"
 #include <string.h>
 
-// Use this struct to store state information for this stage. By making it 
+// Use this struct to store state information for this stage. By making it
 // static the structure and its fields can be accessed in this file
-// but not in the reset of the program. 
+// but not in the reset of the program.
 static struct fetchStateStruct fs;
 
 
@@ -24,11 +24,11 @@ static struct fetchStateStruct fs;
 
 int initializeFetchState(int memoryFileFD, uint64_t initialPC) {
     struct stat statBuff;
-    
+
     if (fstat(memoryFileFD, &statBuff)) {
         return -2;
     }
- 
+
     // Do the actual mapping.
     fs.instBase =  mmap(0, statBuff.st_size, PROT_READ,
                                 MAP_PRIVATE, memoryFileFD, 0);
@@ -69,180 +69,142 @@ struct fetchStateStruct processFetchStage(int tick) {
 
   unsigned char* icodePtr = fs.instBase + fs.PC;
 
-  if(icodePtr > fs.lastAddr)
-    {
-      fs.icode=ADDRESSING_EXCEPTION;
+  if(icodePtr > fs.lastAddr) {
+    fs.icode=ADDRESSING_EXCEPTION;
+    fs.ifun = 0xf;
+  } else {
+    fs.icode = (*(icodePtr) & 0xF0) >> 4;
+    fs.ifun = *(fs.instBase + fs.PC) & 0x0F;
+
+    if(!validFunctionCode(fs.icode, fs.ifun)) {
+      fs.exception_icode = fs.icode;
+      fs.exception_ifun = fs.ifun;
+
+      fs.icode = INVALIDINSTRUCTION_EXCEPTION;
       fs.ifun = 0xf;
     }
-  else
-    {
-      fs.icode = (*(icodePtr) & 0xF0) >> 4;
-      fs.ifun = *(fs.instBase + fs.PC) & 0x0F;
+  }
 
-      if(!validFunctionCode(fs.icode, fs.ifun))
-	{
-	  fs.exception_icode = fs.icode;
-	  fs.exception_ifun = fs.ifun;
-	  
-	  fs.icode = INVALIDINSTRUCTION_EXCEPTION;
-	  fs.ifun = 0xf;
-	}
-    }
-
-  if( fs.icode == HALT )
-    {
-      fs.valP = fs.PC + 1;
-      fs.rA = 0xF;
-      fs.rB = 0xF;
-    }
-  else if( fs.icode == ADDRESSING_EXCEPTION)
-    {
-      fs.rA = 0xF;
-      fs.rB = 0xF;
-      fs.valC = 0;
-      fs.valP = fs.PC;
-    }
-  else if( fs.icode == NOP)
-    {
-      fs.valP = fs.PC + 1;
-      fs.rA = 0xF;
-      fs.rB = 0xF;
-      fs.valC = 0;
-    }
-  else if( fs.icode == RRMOV) //rrmovq, cmovXX
-    {
+  if( fs.icode == HALT ) {
+    fs.valP = fs.PC + 1;
+    fs.rA = 0xF;
+    fs.rB = 0xF;
+  } else if( fs.icode == ADDRESSING_EXCEPTION) {
+    fs.rA = 0xF;
+    fs.rB = 0xF;
+    fs.valC = 0;
+    fs.valP = fs.PC;
+  } else if( fs.icode == NOP) {
+    fs.valP = fs.PC + 1;
+    fs.rA = 0xF;
+    fs.rB = 0xF;
+    fs.valC = 0;
+  } else if( fs.icode == RRMOV) { //rrmovq, cmovXX
       fs.valP = fs.PC + 2;
       fs.valC = 0x00;
-      if(!checkAddr2Exception())
-	{
-	  fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
-	  fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
-	}
+      if(!checkAddr2Exception()) {
+        fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
+        fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
+      }
+  } else if( fs.icode == IRMOV) {
+    fs.valP = fs.PC + 10;
+    fs.rA = UNNEEDED_REG;
+    if(!checkAddr2Exception()) {
+      fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
+      fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
+    } else {
+      fs.valC = 0;
     }
-  else if( fs.icode == IRMOV)
-    {
-      fs.valP = fs.PC + 10;
-      fs.rA = UNNEEDED_REG;
-      if(!checkAddr2Exception())
-	{
-	  fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
-	  fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
-	}
-      else
-	fs.valC = 0;
 
+  } else if( fs.icode == RMMOV) {
+    fs.valP = fs.PC + 10;
+    if(!checkAddr2Exception()) {
+      fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
+      fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
+      fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
+    } else {
+      fs.valC = 0;
     }
-  else if( fs.icode == RMMOV)
-    {
-      fs.valP = fs.PC + 10;
-      if(!checkAddr2Exception())
-	{
-	  fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
-	  fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
-	  fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
-	}
-      else
-	fs.valC = 0;
+  } else if( fs.icode == MRMOV) {
+    fs.valP = fs.PC + 10;
+    if(!checkAddr2Exception()) {
+      fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
+      fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
+      fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
+    } else {
+      fs.valC = 0;
+    }
+  } else if( fs.icode == MATH) {
+    fs.valP = fs.PC + 2;
+    if(!checkAddr2Exception())
+      {
+        fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
+        fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
+      }
+  } else if( fs.icode == JUMP) {
+    fs.valP = fs.PC+9;
+    if(!checkAddr2Exception()) {
+      fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 1);
+    } else {
+      fs.valC = 0;
+    }
 
-    }
-  else if( fs.icode == MRMOV)
-    {
-      fs.valP = fs.PC + 10;
-      if(!checkAddr2Exception())
-	{
-	  fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
-	  fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
-	  fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 2);
-	}
-      else
-	fs.valC = 0;
+    fs.rA = UNNEEDED_REG;
+    fs.rB = UNNEEDED_REG;
+  } else if( fs.icode == CALL) {
+    fs.valP = fs.PC+9;
+    fs.rA = UNNEEDED_REG;
+    fs.rB = UNNEEDED_REG;
 
+    if(!checkAddr2Exception()) {
+      fs.valC = *(uint64_t *)(fs.instBase+fs.PC+1);
+    } else {
+      fs.valC = 0;
     }
-  else if( fs.icode == MATH) // OPq
-    {
-      fs.valP = fs.PC + 2;
-      if(!checkAddr2Exception())
-	{
-	  fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
-	  fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
-	}
+  } else if( fs.icode == RET) {
+    fs.valP = fs.PC+1;
+    fs.rA = UNNEEDED_REG;
+    fs.rB = UNNEEDED_REG;
+  } else if( fs.icode == PUSH) {
+    fs.rB = UNNEEDED_REG;
+    fs.valP = fs.PC+2;
+    if(!checkAddr2Exception()) {
+      fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
+    }
 
+  } else if( fs.icode == POP) {
+    fs.rB = 0xF;
+    fs.valP = fs.PC+2;
+    if(!checkAddr2Exception()) {
+      fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
     }
-  else if( fs.icode == JUMP)
-    {
-      fs.valP = fs.PC+9;
-      if(!checkAddr2Exception())
-	{
-	  fs.valC = *(uint64_t *)(fs.instBase + fs.PC + 1);
-	}
-      else
-	fs.valC = 0;
-
-      fs.rA = UNNEEDED_REG;
-      fs.rB = UNNEEDED_REG;
-
-    }
-  else if( fs.icode == CALL)
-    {
-      fs.valP = fs.PC+9;
-      fs.rA = UNNEEDED_REG;
-      fs.rB = UNNEEDED_REG;
-
-      if(!checkAddr2Exception())
-	fs.valC = *(uint64_t *)(fs.instBase+fs.PC+1);
-      else
-	fs.valC = 0;
-    }
-  else if( fs.icode == RET)
-    {
-      fs.valP = fs.PC+1;
-      fs.rA = UNNEEDED_REG;
-      fs.rB = UNNEEDED_REG;
-    }
-  else if( fs.icode == PUSH)
-    {
-      fs.rB = UNNEEDED_REG;
-      fs.valP = fs.PC+2;
-      if(!checkAddr2Exception())
-	fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
-
-    }
-  else if( fs.icode == POP)
-    {
-      fs.rB = 0xF;
-      fs.valP = fs.PC+2;
-      if(!checkAddr2Exception())
-	{
-	  fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
-	}
-    }
+  }
 
   char instr[50];
   getInstructionOrExceptionMnemonic(instr, fs.icode, fs.ifun, fs.exception_icode, fs.exception_ifun, fs.PC);
 
-
   char stage[4];
-  if(fs.bubble_ctr == 0)
+  if(fs.bubble_ctr == 0) {
     strcpy(stage, "  F");
-  else if(fs.bubble_ctr==1)
+  } else if(fs.bubble_ctr==1) {
     strcpy(stage, "F W");
-  else if(fs.bubble_ctr==2)
+  } else if(fs.bubble_ctr==2) {
     strcpy(stage, "F M");
-  else if(fs.bubble_ctr==3)
+  } else if(fs.bubble_ctr==3) {
     strcpy(stage, "F E");
+  }
 
-  printReg(stage, // char* stage
-	   tick, // int tick
-	   fs.PC, // PC
-	   fs.icode, // icode
-	   fs.ifun, // ifun
-	   1, fs.rA, fs.rB, // regsValid, rA, rB
-	   0, UNNEEDED_REG, UNNEEDED_REG, // srcValid, srcA, srcB
-	   0, UNNEEDED_REG, UNNEEDED_REG, // dstValid, destE, destM
-	   1, fs.valC, // valCValid, valC
-	   1, fs.valP, // valPValid, valP
-	   instr); // char* instr
-	   
+  printReg(stage,                         // char* stage
+           tick,                          // int tick
+           fs.PC,                         // PC
+           fs.icode,                      // icode
+           fs.ifun,                       // ifun
+           1, fs.rA, fs.rB,               // regsValid, rA, rB
+           0, UNNEEDED_REG, UNNEEDED_REG, // srcValid, srcA, srcB
+           0, UNNEEDED_REG, UNNEEDED_REG, // dstValid, destE, destM
+           1, fs.valC,                    // valCValid, valC
+           1, fs.valP,                    // valPValid, valP
+           instr);                        // char* instr
 
   return fs;
 }
