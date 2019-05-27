@@ -42,7 +42,7 @@ struct fetchStateStruct {
 
   int bubble_ctr; // tracks bubble positions
 
-} ;
+};
 
 struct fetchStateStruct processFetchStage(int tick);
 struct fetchStateStruct getFetchState();

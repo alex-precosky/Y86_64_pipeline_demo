@@ -22,28 +22,29 @@ static struct fetchStateStruct fs;
 // This maps the file into main memory so that pointers can be used to access
 // the instruction directly
 
-int initializeFetchState(int memoryFileFD, uint64_t initialPC) {
-    struct stat statBuff;
+int initializeFetchState(int memoryFileFD, uint64_t initialPC)
+{
+  struct stat statBuff;
 
-    if (fstat(memoryFileFD, &statBuff)) {
-        return -2;
-    }
+  if (fstat(memoryFileFD, &statBuff)) {
+    return -2;
+  }
 
-    // Do the actual mapping.
-    fs.instBase =  mmap(0, statBuff.st_size, PROT_READ,
-                                MAP_PRIVATE, memoryFileFD, 0);
-    if (fs.instBase == MAP_FAILED) {
-        return -3;
-    }
-    fs.lastAddr = fs.instBase + statBuff.st_size;
-    fs.PC = initialPC;
+  // Do the actual mapping.
+  fs.instBase =  mmap(0, statBuff.st_size, PROT_READ,
+                      MAP_PRIVATE, memoryFileFD, 0);
+  if (fs.instBase == MAP_FAILED) {
+    return -3;
+  }
+  fs.lastAddr = fs.instBase + statBuff.st_size;
+  fs.PC = initialPC;
 
-    fs.icode = NOP;
-    fs.ifun = 0;
+  fs.icode = NOP;
+  fs.ifun = 0;
 
-    fs.bubble_ctr = 0;
+  fs.bubble_ctr = 0;
 
-    return 0;
+  return 0;
 }
 
 struct fetchStateStruct getFetchState()
@@ -54,14 +55,13 @@ struct fetchStateStruct getFetchState()
 
 int checkAddr2Exception()
 {
-  if(fs.instBase + fs.valP > fs.lastAddr)
-    {
-      fs.exception_icode = fs.icode;
-      fs.exception_ifun = fs.ifun;
-      fs.icode = ADDRESSING_EXCEPTION2;
-      fs.valP = fs.PC;
-      return 1;
-    }
+  if(fs.instBase + fs.valP > fs.lastAddr) {
+    fs.exception_icode = fs.icode;
+    fs.exception_ifun = fs.ifun;
+    fs.icode = ADDRESSING_EXCEPTION2;
+    fs.valP = fs.PC;
+    return 1;
+  }
   return 0;
 }
 
@@ -141,6 +141,7 @@ struct fetchStateStruct processFetchStage(int tick) {
         fs.rA = *(fs.instBase + fs.PC + 1) >> 4;
         fs.rB = *(fs.instBase + fs.PC + 1) & 0x0F;
       }
+
   } else if( fs.icode == JUMP) {
     fs.valP = fs.PC+9;
     if(!checkAddr2Exception()) {
@@ -148,23 +149,24 @@ struct fetchStateStruct processFetchStage(int tick) {
     } else {
       fs.valC = 0;
     }
-
     fs.rA = UNNEEDED_REG;
     fs.rB = UNNEEDED_REG;
+
   } else if( fs.icode == CALL) {
     fs.valP = fs.PC+9;
     fs.rA = UNNEEDED_REG;
     fs.rB = UNNEEDED_REG;
-
     if(!checkAddr2Exception()) {
       fs.valC = *(uint64_t *)(fs.instBase+fs.PC+1);
     } else {
       fs.valC = 0;
     }
+
   } else if( fs.icode == RET) {
     fs.valP = fs.PC+1;
     fs.rA = UNNEEDED_REG;
     fs.rB = UNNEEDED_REG;
+
   } else if( fs.icode == PUSH) {
     fs.rB = UNNEEDED_REG;
     fs.valP = fs.PC+2;

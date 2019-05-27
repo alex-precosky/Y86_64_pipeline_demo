@@ -42,8 +42,13 @@ int getInstructionSize(nibble opCode);
 int validInstruction(nibble icode);
 int validFunctionCode(nibble icode, nibble ifun);
 
-char * getInstructionMnemonic(nibble icode, nibble ifun);
+char *getInstructionMnemonic(nibble icode, nibble ifun);
 
-void getInstructionOrExceptionMnemonic(char* dest, nibble icode, nibble ifun, nibble exception_icode, nibble exception_ifun, uint64_t PC);
+void getInstructionOrExceptionMnemonic(char* dest,
+                                       nibble icode,
+                                       nibble ifun,
+                                       nibble exception_icode,
+                                       nibble exception_ifun,
+                                       uint64_t PC);
 
 #endif /* instructionSpecifications_h */
